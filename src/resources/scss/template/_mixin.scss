@@ -1,0 +1,127 @@
+//width
+
+@mixin width($pc) {
+  width: 100%;
+  max-width: calc(#{$pc} + 40px);
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include mq(s) {
+    padding: 0 20px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@mixin width2($pc) {
+  width: 100%;
+  max-width: calc(#{$pc} + 40px);
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include mq(s) {
+    padding: 0;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+//display:flex;
+
+@mixin flex($justify: space-between, $align: stretch) {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+//font-size
+@mixin fs($pc: 1.6rem, $tab: 1.6rem, $sp: 1.4rem) {
+  font-size: $pc;
+
+  @include tab-small {
+    font-size: $tab;
+  }
+
+  @include mq(s) {
+    font-size: $sp;
+  }
+}
+
+@mixin lh($pc: 1.8, $sp: 1.6) {
+  line-height: $pc;
+
+  @include mq(s) {
+    line-height: $sp;
+  }
+}
+
+//slick
+
+@mixin slicks {
+  font-size: 10px;
+}
+
+//margin
+
+@mixin scbar($color: rgba(0, 0, 50, 0.5)) {
+  @media only screen and (min-width: 768px) {
+    /*スクロールバー全体*/
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /*スクロールバーの動く部分*/
+    &::-webkit-scrollbar-thumb {
+      background-color: $color;
+      border-radius: 10px;
+      opacity: 0.3;
+    }
+  }
+}
+
+//absoluteを中央にする
+//引数
+//a→上下左右完全中央（デフォ） x→左右軸中央 y→上下軸中央 r→リセット
+@mixin positioncenter($target: 'a') {
+  @if $target == 'a' {
+    //上下左右完全
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  } @else if $target == 'x' {
+    //左右中央
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+  } @else if $target == 'y' {
+    //上下中央
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+  } @else if $target == 'r' {
+    //リセットする
+    position: static;
+    top: auto;
+    transform: inherit;
+    -webkit-transform: inherit;
+    -ms-transform: inherit;
+  } @else {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+}

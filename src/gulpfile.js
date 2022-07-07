@@ -1,6 +1,6 @@
 var gulp = require("gulp");
 var isChanged = require("gulp-changed");
-var sass = require("gulp-sass");
+var sass = require("gulp-sass")(require("sass"));
 var autoprefixer = require("gulp-autoprefixer");
 var gcmq = require("gulp-group-css-media-queries");
 var csscomb = require("gulp-csscomb"); //cssプロパティ順序
@@ -12,10 +12,14 @@ var sassGlob = require("gulp-sass-glob");
 sass.compiler = require("sass");
 var webp = require("gulp-webp");
 
+const dest = {
+    root: "public/css",
+};
+
 // Sass compile task
 gulp.task("scss", function (done) {
     return gulp
-        .src("./resouces/scss/**/*.scss") // コンパイル対象 scss
+        .src("resources/scss/**/*.scss") // コンパイル対象 scss
         .pipe(sassGlob())
         .pipe(
             sass({
@@ -43,21 +47,21 @@ gulp.task("scss", function (done) {
             })
         )
         .pipe(gcmq())
-        .pipe(gulp.dest("./public/css")); // 出力
+        .pipe(gulp.dest(dest.root)); // 出力
     done();
 });
 
 // .min.css generate task
 gulp.task("mincss", function (done) {
     return gulp
-        .src(["./public/css/**/*.css", "!./public/css/**/*.min.css"]) //上のタスクで生成した css
+        .src(["public/css/**/*.css", "!public/css/**/*.min.css"]) //上のタスクで生成した css
         .pipe(cleanCSS()) // css 圧縮
         .pipe(
             rename({
                 extname: ".min.css",
             })
         ) // .min.css にリネーム
-        .pipe(gulp.dest("./public/css")) // min.css 出力
+        .pipe(gulp.dest(dest.root)) // min.css 出力
         .pipe(
             notify({
                 title: "compiled!",
@@ -80,7 +84,7 @@ gulp.task("webp", function (done) {
 gulp.task("scssmin", function (done) {
     // scss watch & ftp deploy
     gulp.watch(
-        "./src/scss/**/*.scss",
+        "resources/scss/**/*.scss",
         gulp.series("scss", "mincss" /*, 'ftp'*/)
     );
     done();
