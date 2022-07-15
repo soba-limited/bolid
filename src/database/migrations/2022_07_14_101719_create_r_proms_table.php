@@ -12,14 +12,12 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->increments('id');
-            $table->morphs('tokenable');
-            $table->string('name');
-            $table->string('token', 64)->unique();
-            $table->text('abilities')->nullable();
-            $table->timestamp('last_used_at')->nullable();
+        Schema::create('r_proms', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('r_post_id');
             $table->timestamps();
+
+            $table->foreign('r_post_id')->references('id')->on('r_posts')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('personal_access_tokens');
+        Schema::dropIfExists('r_proms');
     }
 };

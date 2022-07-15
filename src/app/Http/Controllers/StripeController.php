@@ -29,8 +29,6 @@ class StripeController extends Controller
         // フォーム送信の情報から$paymentMethodを作成する
         $paymentMethod=$request->input('stripePaymentMethod');
 
-        // プランはconfigに設定したbasic_plan_idとする
-        $plan=config('services.stripe.basic_plan_id');
 
         // 上記のプランと支払方法で、サブスクを新規作成する
         $user->newSubscription('default', 'price_1LISAaJQCbvjFnUkgGujG79O')

@@ -23,5 +23,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/subscription', [App\Http\Controllers\StripeController::class,'subscription'])->name('stripe.subscription');
-Route::post('/subscription/afterpay', [App\Http\Controllers\StripeController::class,'afterpay'])->name('stripe.afterpay');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/subscription', [App\Http\Controllers\StripeController::class,'subscription'])->name('stripe.subscription');
+    Route::post('/subscription/afterpay', [App\Http\Controllers\StripeController::class,'afterpay'])->name('stripe.afterpay');
+});

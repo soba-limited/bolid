@@ -19,9 +19,9 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('user_type');
-            $table->integer('c_profile_id')->nullable();
-            $table->integer('r_profile_id')->nullable();
-            $table->integer('d_profile_id')->nullable();
+            $table->unsignedBigInteger('c_profile_id')->nullable();
+            $table->unsignedBigInteger('r_profile_id')->nullable();
+            $table->unsignedBigInteger('d_profile_id')->nullable();
             $table->string('point')->nullable();
             $table->rememberToken();
             $table->timestamps();
