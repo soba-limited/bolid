@@ -1,0 +1,86 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\LPresent;
+use App\Http\Requests\StoreLPresentRequest;
+use App\Http\Requests\UpdateLPresentRequest;
+
+class LPresentController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreLPresentRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreLPresentRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\LPresent  $lPresent
+     * @return \Illuminate\Http\Response
+     */
+    public function show(LPresent $lPresent)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\LPresent  $lPresent
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(LPresent $lPresent)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \App\Http\Requests\UpdateLPresentRequest  $request
+     * @param  \App\Models\LPresent  $lPresent
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateLPresentRequest $request, LPresent $lPresent)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\LPresent  $lPresent
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(LPresent $lPresent)
+    {
+        //
+    }
+}
