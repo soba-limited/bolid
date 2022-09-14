@@ -1,9 +1,8 @@
-
-    <?php
+<?php
         use Illuminate\Support\Facades\Schema;
         use Illuminate\Database\Schema\Blueprint;
         use Illuminate\Database\Migrations\Migration;
-        
+
         class CreateRSidebarsTable extends Migration
         {
             /**
@@ -14,25 +13,21 @@
             public function up()
             {
                 Schema::create("r_sidebars", function (Blueprint $table) {
-
-						$table->increments('id');
-						$table->string('title',100)->nullable();
-						$table->longText('content')->nullable();
-						$table->integer('order');
-						$table->integer('state');
-						$table->timestamps();
-
-
-
-						// ----------------------------------------------------
-						// -- SELECT [r_sidebars]--
-						// ----------------------------------------------------
-						// $query = DB::table("r_sidebars")
-						// ->get();
-						// dd($query); //For checking
+                    $table->increments('id');
+                    $table->string('title', 100)->nullable();
+                    $table->longText('content')->nullable();
+                    $table->integer('order')->default(0);
+                    $table->integer('state')->default(0);
+                    $table->timestamps();
 
 
 
+                    // ----------------------------------------------------
+                    // -- SELECT [r_sidebars]--
+                    // ----------------------------------------------------
+                    // $query = DB::table("r_sidebars")
+                    // ->get();
+                    // dd($query); //For checking
                 });
             }
 
@@ -46,4 +41,3 @@
                 Schema::dropIfExists("r_sidebars");
             }
         }
-    
