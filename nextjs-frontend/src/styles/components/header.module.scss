@@ -1,0 +1,7 @@
+@import '../variables.scss';
+
+header {
+  .logo {
+    @include width(300px, 300px, 160px);
+  }
+}

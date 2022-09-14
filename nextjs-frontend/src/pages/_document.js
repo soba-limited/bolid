@@ -1,27 +1,21 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from 'next/document'
+import { siteMeta } from '@/lib/constants'
 
-class MyDocument extends Document {
-    static async getInitialProps(ctx) {
-        const initialProps = await Document.getInitialProps(ctx)
-        return { ...initialProps }
-    }
+const {siteLang} = siteMeta;
 
-    render() {
-        return (
-            <Html>
-                <Head>
-                    <link
-                        href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap"
-                        rel="stylesheet"
-                    />
-                </Head>
-                <body className="antialiased">
-                    <Main />
-                    <NextScript />
-                </body>
-            </Html>
-        )
-    }
+export default function Document() {
+    return (
+        <Html lang={siteLang}>
+            <Head>
+                <link
+                    ref="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+                    rel="stylesheet"
+                />
+            </Head>
+            <body>
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
+    )
 }
-
-export default MyDocument
