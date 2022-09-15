@@ -63,6 +63,6 @@ class RPost extends Model
     }
     public function RSeries()
     {
-        return $this->belongsTo(RSerie::class);
+        return $this->belongsTo(RSeries::class);
     }
 }
