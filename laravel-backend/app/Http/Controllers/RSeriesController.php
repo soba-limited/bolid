@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\RSerie;
-use App\Http\Requests\StoreRSerieRequest;
-use App\Http\Requests\UpdateRSerieRequest;
+use App\Models\RSeries;
+use App\Http\Requests\StoreRSeriesRequest;
+use App\Http\Requests\UpdateRSeriesRequest;
 
-class RSerieController extends Controller
+class RSeriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class RSerieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRSerieRequest  $request
+     * @param  \App\Http\Requests\StoreRSeriesRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRSerieRequest $request)
+    public function store(StoreRSeriesRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class RSerieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\RSerie  $rSerie
+     * @param  \App\Models\RSeries  $rSeries
      * @return \Illuminate\Http\Response
      */
-    public function show(RSerie $rSerie)
+    public function show(RSeries $rSeries)
     {
         //
     }
@@ -53,10 +53,10 @@ class RSerieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\RSerie  $rSerie
+     * @param  \App\Models\RSeries  $rSeries
      * @return \Illuminate\Http\Response
      */
-    public function edit(RSerie $rSerie)
+    public function edit(RSeries $rSeries)
     {
         //
     }
@@ -64,11 +64,11 @@ class RSerieController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateRSerieRequest  $request
-     * @param  \App\Models\RSerie  $rSerie
+     * @param  \App\Http\Requests\UpdateRSeriesRequest  $request
+     * @param  \App\Models\RSeries  $rSeries
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRSerieRequest $request, RSerie $rSerie)
+    public function update(UpdateRSeriesRequest $request, RSeries $rSeries)
     {
         //
     }
@@ -76,10 +76,10 @@ class RSerieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\RSerie  $rSerie
+     * @param  \App\Models\RSeries  $rSeries
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RSerie $rSerie)
+    public function destroy(RSeries $rSeries)
     {
         //
     }
