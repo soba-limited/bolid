@@ -30,8 +30,6 @@
                     //*********************************
                     // Foreign KEY [ Uncomment if you want to use!! ]
                     //*********************************
-                    //$table->foreign("r_profile_id")->references("id")->on("r_profiles");
-
 
 
                     // ----------------------------------------------------
