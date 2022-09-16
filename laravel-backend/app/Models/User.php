@@ -23,7 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'account_type',
-        'r_profile_id',
+        'l_profile_id',
         'c_profile_id',
         'd_profile_id',
         'point',
@@ -47,26 +47,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'account_type' => 'integer',
-        'r_profile_id' => 'integer',
+        'l_profile_id' => 'integer',
         'c_profile_id' => 'integer',
         'd_profile_id' => 'integer',
         'point' => 'integer',
     ];
 
-    public function RPost()
+    public function LPost()
     {
-        return $this->hasMany(RPost::class);
+        return $this->hasMany(LPost::class);
     }
-    public function RProfile()
+    public function LProfile()
     {
-        return $this->belongsTo(RProfile::class);
+        return $this->belongsTo(LProfile::class);
     }
-    public function RPresent()
+    public function LPresent()
     {
-        return $this->belongsToMany(RPresent::class);
+        return $this->belongsToMany(LPresent::class);
     }
-    public function RBookmark()
+    public function LBookmark()
     {
-        return $this->belongsToMany(RPost::class, 'r_post_user', 'user_id', 'r_post_id');
+        return $this->belongsToMany(LPost::class, 'l_post_user', 'user_id', 'l_post_id');
     }
 }
