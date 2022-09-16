@@ -20,7 +20,7 @@
                     $table->string('password', 255)->nullable();
                     $table->string('remember_token', 100)->nullable();
                     $table->integer('account_type')->default(0);
-                    $table->bigInteger('r_profile_id')->nullable()->unsigned();
+                    $table->bigInteger('l_profile_id')->nullable()->unsigned();
                     $table->bigInteger('c_profile_id')->nullable();
                     $table->bigInteger('d_profile_id')->nullable();
                     $table->integer('point')->default(0);

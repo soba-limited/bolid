@@ -29,45 +29,45 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//liondollコントローラー
-Route::get('/liondoll', [RIndexController::class,'index'])->name('r_index');
-Route::get('/liondoll/post/{category}', [RPostController::class,'index'])->name('r_post.index');
-Route::get('/liondoll/post/{id}', [RPostController::class,'show'])->name('r_post.show');
-Route::get('/liondoll/presents', [RPresentController::class,'index'])->name('r_present.index');
-Route::get('/liondoll/presents/{id}', [RPresentController::class,'show'])->name('r_present.show');
-Route::get('/liondoll/series/{id}', [RSerieController::class,'show'])->name('r_series.show');
+//riondorコントローラー
+Route::get('/riondor', [RIndexController::class,'index'])->name('r_index');
+Route::get('/riondor/post/{category}', [RPostController::class,'index'])->name('r_post.index');
+Route::get('/riondor/post/{id}', [RPostController::class,'show'])->name('r_post.show');
+Route::get('/riondor/presents', [RPresentController::class,'index'])->name('r_present.index');
+Route::get('/riondor/presents/{id}', [RPresentController::class,'show'])->name('r_present.show');
+Route::get('/riondor/series/{id}', [RSerieController::class,'show'])->name('r_series.show');
 
-//liondoll一般ユーザーコントローラー
+//riondor一般ユーザーコントローラー
 
-Route::post('/liondoll/present/{id}/app', [RPresentController::class,'app'])->name('r_present.app');
-Route::get('/liondoll/mypage', [RProfileController::class,'show'])->name('r_profile.show');
-Route::get('/liondoll/mypage/create', [RProfileController::class,'create'])->name('r_profile.create');
-Route::post('/liondoll/mypage/store', [RProfileController::class,'store'])->name('r_profile.store');
-Route::get('/liondoll/mypage/edit', [RProfileController::class,'edit'])->name('r_profile.edit');
-Route::post('/liondoll/mypage/update', [RProfileController::class,'update'])->name('r_profile.update');
-Route::get('/liondoll/mypage/bookmark', [RProfileController::class,'bookmark'])->name('r_profile.bookmark');
-Route::post('/liondoll/post/{id}/bookmark', [RPostController::class,'bookmark'])->name('r_post.bookmark');
-Route::delete('/liondoll/post/{id}/bookmark_remove', [RPostController::class,'bookmark_remove'])->name('r_post.bookmark_remove');
+Route::post('/riondor/present/{id}/app', [RPresentController::class,'app'])->name('r_present.app');
+Route::get('/riondor/mypage', [RProfileController::class,'show'])->name('r_profile.show');
+Route::get('/riondor/mypage/create', [RProfileController::class,'create'])->name('r_profile.create');
+Route::post('/riondor/mypage/store', [RProfileController::class,'store'])->name('r_profile.store');
+Route::get('/riondor/mypage/edit', [RProfileController::class,'edit'])->name('r_profile.edit');
+Route::post('/riondor/mypage/update', [RProfileController::class,'update'])->name('r_profile.update');
+Route::get('/riondor/mypage/bookmark', [RProfileController::class,'bookmark'])->name('r_profile.bookmark');
+Route::post('/riondor/post/{id}/bookmark', [RPostController::class,'bookmark'])->name('r_post.bookmark');
+Route::delete('/riondor/post/{id}/bookmark_remove', [RPostController::class,'bookmark_remove'])->name('r_post.bookmark_remove');
 
-//liondoll記事投稿者コントローラー
+//riondor記事投稿者コントローラー
 
-Route::get('/liondoll/post/create', [RPostController::class,'create'])->name('r_post.create');
-Route::post('/liondoll/post/store', [RPostController::class,'store'])->name('r_post.store');
-Route::get('/liondoll/post/{id}/edit', [RPostController::class,'edit'])->name('r_post.edit');
-Route::post('/liondoll/post/{id}/update', [RPostController::class,'update'])->name('r_post.update');
-Route::delete('/liondoll/post/{id}/delete', [RPostController::class,'delete'])->name('r_post.delete');
-Route::get('/liondoll/series/create', [RSeriesController::class,'create'])->name('r_series.create');
-Route::post('/liondoll/series/store', [RSeriesController::class,'store'])->name('r_series.store');
-Route::get('/liondoll/series/{id}/edit', [RSeriesController::class,'edit'])->name('r_series.edit');
-Route::post('/liondoll/series/{id}/update', [RSeriesController::class,'update'])->name('r_series.update');
-Route::delete('/liondoll/series/{id}/delete', [RSeriesController::class,'delete'])->name('r_series.delete');
+Route::get('/riondor/post/create', [RPostController::class,'create'])->name('r_post.create');
+Route::post('/riondor/post/store', [RPostController::class,'store'])->name('r_post.store');
+Route::get('/riondor/post/{id}/edit', [RPostController::class,'edit'])->name('r_post.edit');
+Route::post('/riondor/post/{id}/update', [RPostController::class,'update'])->name('r_post.update');
+Route::delete('/riondor/post/{id}/delete', [RPostController::class,'delete'])->name('r_post.delete');
+Route::get('/riondor/series/create', [RSeriesController::class,'create'])->name('r_series.create');
+Route::post('/riondor/series/store', [RSeriesController::class,'store'])->name('r_series.store');
+Route::get('/riondor/series/{id}/edit', [RSeriesController::class,'edit'])->name('r_series.edit');
+Route::post('/riondor/series/{id}/update', [RSeriesController::class,'update'])->name('r_series.update');
+Route::delete('/riondor/series/{id}/delete', [RSeriesController::class,'delete'])->name('r_series.delete');
 
-//liondoll管理者コントローラー
+//riondor管理者コントローラー
 
-Route::get('/liondoll/admin/present', [RPresent::class,'admin_index'])->name('r_present.admin_index');
-Route::get('/liondoll/admin/present/{id}', [RPresent::class,'admin_show'])->name('r_present.admin_show');
-Route::get('/liondoll/present/create', [RPresentController::class,'create'])->name('r_present.create');
-Route::post('/liondoll/present/store', [RPresentController::class,'store'])->name('r_present.store');
-Route::get('/liondoll/present/{id}/edit', [RPresentController::class,'edit'])->name('r_present.edit');
-Route::post('/liondoll/present/{id}/update', [RPresentController::class,'update'])->name('r_present.update');
-Route::delete('/liondoll/present/{id}/delete', [RPresentController::class,'delete'])->name('r_present.delete');
+Route::get('/riondor/admin/present', [RPresent::class,'admin_index'])->name('r_present.admin_index');
+Route::get('/riondor/admin/present/{id}', [RPresent::class,'admin_show'])->name('r_present.admin_show');
+Route::get('/riondor/present/create', [RPresentController::class,'create'])->name('r_present.create');
+Route::post('/riondor/present/store', [RPresentController::class,'store'])->name('r_present.store');
+Route::get('/riondor/present/{id}/edit', [RPresentController::class,'edit'])->name('r_present.edit');
+Route::post('/riondor/present/{id}/update', [RPresentController::class,'update'])->name('r_present.update');
+Route::delete('/riondor/present/{id}/delete', [RPresentController::class,'delete'])->name('r_present.delete');
