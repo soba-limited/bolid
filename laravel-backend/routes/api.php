@@ -13,6 +13,8 @@ use App\Http\Controllers\LProfileController;
 use App\Http\Controllers\LSerieController;
 use App\Http\Controllers\LSeriesController;
 
+use App\Models\User;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -31,7 +33,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 //liondorコントローラー
 Route::get('/liondor', [LIndexController::class,'index'])->name('l_index');
 Route::get('/liondor/post/{category}', [LPostController::class,'index'])->name('l_post.index');
-Route::get('/liondor/post/{id}', [LPostController::class,'show'])->name('l_post.show');
+Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_post.show');
 Route::get('/liondor/presents', [LPresentController::class,'index'])->name('l_present.index');
 Route::get('/liondor/presents/{id}', [LPresentController::class,'show'])->name('l_present.show');
 Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_series.show');

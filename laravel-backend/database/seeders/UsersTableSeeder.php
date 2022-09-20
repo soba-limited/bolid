@@ -26,6 +26,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'MaoYamauchi',
                 'email' => 'yamauchi@ai-communication.jp',
                 'password' => Hash::make('yamauchi'),
+                'l_profile_id' => '1',
             ],
             [
                 'name' => 'KojiNakano',

@@ -41,6 +41,6 @@ class LCategory extends Model
 
     public function LPost()
     {
-        return $this->hasMany(LPost::class);
+        return $this->hasMany(\App\Models\LPost::class);
     }
 }

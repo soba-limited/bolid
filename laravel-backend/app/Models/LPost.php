@@ -49,7 +49,7 @@ class LPost extends Model
         'l_series_id'=>'integer',
     ];
 
-    public function Users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
@@ -57,12 +57,16 @@ class LPost extends Model
     {
         return $this->belongsToMany(User::class, 'l_post_user', 'l_post_id', 'user_id');
     }
-    public function LCategorys()
+    public function LCategories()
     {
         return $this->belongsTo(LCategory::class);
     }
     public function LSeries()
     {
         return $this->belongsTo(LSeries::class);
+    }
+    public function LPickup()
+    {
+        return $this->hasOne(LPickup::class);
     }
 }

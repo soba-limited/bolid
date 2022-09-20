@@ -23,8 +23,8 @@
                     $table->integer('child')->nullable();
                     $table->string('income', 50)->nullable();
                     $table->timestamps();
-                    $table->foreign("user_id")->references("id")->on("users");
-                    $table->foreign("l_present_id")->references("id")->on("l_presents");
+                    $table->foreign("user_id")->references("id")->on("users")->onUpdate('CASCADE')->onDelete('CASCADE');
+                    $table->foreign("l_present_id")->references("id")->on("l_presents")->onUpdate('CASCADE')->onDelete('CASCADE');
 
 
 

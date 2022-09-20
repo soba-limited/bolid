@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\LPickup;
+use App\Models\LSeries;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,8 +24,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
+            LProfileSeeder::class,
             UsersTableSeeder::class,
-            LCategorySeeder::class,
+            LSeriesSeeder::class,
+            LCategoryseeder::class,
+            LPostSeeder::class,
+            LPickupSeeder::class,
         ]);
     }
 }

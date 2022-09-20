@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\LPost;
+use App\Models\LCategory;
+use App\Models\LPickup;
+use App\Models\LSidebar;
 use App\Http\Requests\StoreLPostRequest;
 use App\Http\Requests\UpdateLPostRequest;
+use App\Models\User;
 
 class LPostController extends Controller
 {
@@ -13,9 +17,34 @@ class LPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($category)
     {
         //
+        $categories = LCategory::where('slug', $category)->first();
+        if ($categories->depth == 0) {
+            $category_array = LCategory::select('id')->where('parent_slug', $category);
+            $posts = LPost::whereIn('l_category_id', $category_array)->orWhere('l_category_id', $categories->id);
+        } else {
+            $posts = LPost::where('l_category_id', $categories->id);
+        }
+        $posts = $posts->get();
+
+        $sidebar = LSidebar::get();
+
+        $pickup = LPickup::get();
+        $pickupArray = [];
+        foreach ($pickup as $single) {
+            array_push($pickupArray, $single->LPost()->first());
+        }
+
+        //それぞれを配列に入れる
+        $allarray = [
+            'posts' => $posts,
+            'sidebars' => $sidebar,
+            'pickups' => $pickupArray,
+        ];
+
+        return $this->jsonResponse($allarray);
     }
 
     /**
@@ -45,9 +74,11 @@ class LPostController extends Controller
      * @param  \App\Models\LPost  $lPost
      * @return \Illuminate\Http\Response
      */
-    public function show(LPost $lPost)
+    public function show($id)
     {
         //
+        $posts = LPost::find($id);
+        return $posts->user;
     }
 
     /**
