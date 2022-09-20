@@ -18,6 +18,9 @@ class LPresentFactory extends Factory
     {
         return [
             //
+            'title' => $this->faker->realText(20),
+            'offer' => $this->faker->name(20),
+            'limit' => "2032-09-20 06:01:02"
         ];
     }
 }
