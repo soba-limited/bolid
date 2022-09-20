@@ -19,7 +19,7 @@ class LSeriesFactory extends Factory
     {
         return [
             //
-            'name' => $this->faker->realText(20),
+            'name' => $this->faker->realText(10),
         ];
     }
 }

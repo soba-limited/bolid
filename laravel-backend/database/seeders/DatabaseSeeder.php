@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             LCategoryseeder::class,
             LPostSeeder::class,
             LPickupSeeder::class,
+            LPresentSeeder::class,
         ]);
     }
 }
