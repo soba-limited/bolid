@@ -1,0 +1,25 @@
+@import '../variables.scss';
+
+.naviList{
+  ul {
+    @include flex(center, center);
+    @include gap(4px 40px, 4px 20px);
+
+    a {
+      font-size: 14px;
+      transition: .2s ease-out;
+
+      &:hover {
+        opacity: .5;
+      }
+    }
+
+    &.colorWhite {
+      justify-content: space-between;
+
+      a {
+        color: $w1;
+      }
+    }
+  }
+}

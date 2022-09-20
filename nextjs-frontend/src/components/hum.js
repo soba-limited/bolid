@@ -1,11 +1,19 @@
 import styles from '@/styles/components/hum.module.scss'
+import { HumCont } from '@/components';
 
-const Hum = () => {
+const Hum = ({humOpen, clickHumOpen, clickHumClose}) => {
   return (
-    <button className={styles.humBth}>
-      <span></span>
-      <span></span>
-    </button>
+    <>
+      <button
+        className={`${styles.humBtn} ${humOpen ? styles.open : ''}`}
+        onClick={clickHumOpen}
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <HumCont humOpen={humOpen} clickHumClose={clickHumClose} />
+    </>
   );
 }
 

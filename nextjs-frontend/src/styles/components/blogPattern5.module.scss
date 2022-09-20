@@ -1,0 +1,7 @@
+@import '../variables.scss';
+
+.flex {
+  display: flex;
+  @include gap(100px);
+  flex-direction: column;
+}
