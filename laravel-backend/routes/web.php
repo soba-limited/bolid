@@ -25,5 +25,9 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/liondor', [LIndexController::class,'index'])->name('l_index');
+Route::get('/liondor/post/{category}', [LPostController::class,'index'])->name('l_post.index');
+Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_post.show');
+
 
 require __DIR__.'/auth.php';
