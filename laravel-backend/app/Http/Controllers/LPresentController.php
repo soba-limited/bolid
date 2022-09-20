@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\LPresent;
+use App\Models\LSidebar;
+use App\Models\LPickup;
 use App\Http\Requests\StoreLPresentRequest;
 use App\Http\Requests\UpdateLPresentRequest;
 
@@ -16,6 +18,23 @@ class LPresentController extends Controller
     public function index()
     {
         //
+        $presents = LPresent::get();
+        $sidebar = LSidebar::get();
+
+        $pickup = LPickup::get();
+        $pickupArray = [];
+        foreach ($pickup as $single) {
+            array_push($pickupArray, $single->LPost()->first());
+        }
+
+        //それぞれを配列に入れる
+        $allarray = [
+            'presents' => $presents,
+            'sidebars' => $sidebar,
+            'pickups' => $pickupArray,
+        ];
+
+        return $this->jsonResponse($allarray);
     }
 
     /**
@@ -45,9 +64,26 @@ class LPresentController extends Controller
      * @param  \App\Models\LPresent  $lPresent
      * @return \Illuminate\Http\Response
      */
-    public function show(LPresent $lPresent)
+    public function show($id)
     {
         //
+        $presents = LPresent::find($id);
+        $sidebar = LSidebar::get();
+
+        $pickup = LPickup::get();
+        $pickupArray = [];
+        foreach ($pickup as $single) {
+            array_push($pickupArray, $single->LPost()->first());
+        }
+
+        //それぞれを配列に入れる
+        $allarray = [
+            'presents' => $presents,
+            'sidebars' => $sidebar,
+            'pickups' => $pickupArray,
+        ];
+
+        return $this->jsonResponse($allarray);
     }
 
     /**

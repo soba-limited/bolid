@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Http;
 use App\Models\User;
 use App\Http\Controllers\LIndexController;
 use App\Http\Controllers\LPostController;
+use App\Http\Controllers\LSeriesController;
+use App\Http\Controllers\LPresentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +30,8 @@ Route::get('/', function () {
 Route::get('/liondor', [LIndexController::class,'index'])->name('l_index');
 Route::get('/liondor/post/{category}', [LPostController::class,'index'])->name('l_post.index');
 Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_post.show');
-
+Route::get('/liondor/present/', [LPresentController::class,'index'])->name('l_present.index');
+Route::get('/liondor/present/{id}', [LPresentController::class,'show'])->name('l_present.show');
+Route::get('/liondor/series/{id}', [LSeriesController::class,'show'])->name('l_series.show');
 
 require __DIR__.'/auth.php';

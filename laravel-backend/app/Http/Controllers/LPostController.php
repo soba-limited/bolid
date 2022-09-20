@@ -78,7 +78,22 @@ class LPostController extends Controller
     {
         //
         $posts = LPost::find($id);
-        return $posts->user;
+        $sidebar = LSidebar::get();
+
+        $pickup = LPickup::get();
+        $pickupArray = [];
+        foreach ($pickup as $single) {
+            array_push($pickupArray, $single->LPost()->first());
+        }
+
+        //それぞれを配列に入れる
+        $allarray = [
+            'posts' => $posts,
+            'sidebars' => $sidebar,
+            'pickups' => $pickupArray,
+        ];
+
+        return $this->jsonResponse($allarray);
     }
 
     /**

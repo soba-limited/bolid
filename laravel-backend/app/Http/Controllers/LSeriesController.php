@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\LSeries;
+use App\Models\LPickup;
+use App\Models\LSidebar;
+
 use App\Http\Requests\StoreLSeriesRequest;
 use App\Http\Requests\UpdateLSeriesRequest;
 
@@ -45,9 +48,28 @@ class LSeriesController extends Controller
      * @param  \App\Models\LSeries  $lSeries
      * @return \Illuminate\Http\Response
      */
-    public function show(LSeries $lSeries)
+    public function show($id)
     {
         //
+        $series = LSeries::with('LPost')->find($id);
+
+        $sidebar = LSidebar::get();
+
+        $pickup = LPickup::get();
+        $pickupArray = [];
+        foreach ($pickup as $single) {
+            array_push($pickupArray, $single->LPost()->first());
+        }
+
+
+        //それぞれを配列に入れる
+        $allarray = [
+            'series' => $series,
+            'sidebars' => $sidebar,
+            'pickups' => $pickupArray,
+        ];
+
+        return $this->jsonResponse($allarray);
     }
 
     /**
