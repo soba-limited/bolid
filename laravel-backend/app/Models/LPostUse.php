@@ -36,4 +36,13 @@ class LPostUse extends Model
         'user_id'=>'integer',
         'l_post_id'=>'integer',
     ];
+
+    public function LCategory()
+    {
+        return $this->belongsTo(\App\Models\LCategory::class);
+    }
+    public function LSeries()
+    {
+        return $this->belongsTo(\App\Models\LSeries::class);
+    }
 }
