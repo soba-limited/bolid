@@ -20,6 +20,6 @@ class LSeriesSeeder extends Seeder
         DB::table('l_series')->delete();
         DB::unprepared("ALTER TABLE l_series AUTO_INCREMENT = 1 ");
 
-        \App\Models\LSeries::factory()->count(5)->create();
+        \App\Models\LSeries::factory()->count(10)->create();
     }
 }
