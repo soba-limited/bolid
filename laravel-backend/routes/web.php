@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
 use App\Models\User;
+use App\Http\Controllers\LProfileController;
 use App\Http\Controllers\LIndexController;
 use App\Http\Controllers\LPostController;
 use App\Http\Controllers\LSeriesController;
@@ -33,5 +34,11 @@ Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_
 Route::get('/liondor/present/', [LPresentController::class,'index'])->name('l_present.index');
 Route::get('/liondor/present/{id}', [LPresentController::class,'show'])->name('l_present.show');
 Route::get('/liondor/series/{id}', [LSeriesController::class,'show'])->name('l_series.show');
+
+Route::middleware(['web'])->group(function () {
+    //
+    Route::get('/liondor/mypage', [LProfileController::class,'show'])->name('l_profile.show');
+});
+
 
 require __DIR__.'/auth.php';

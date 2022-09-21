@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LPostUse;
-use App\Http\Requests\StoreLPostUseRequest;
-use App\Http\Requests\UpdateLPostUseRequest;
+use App\Models\LPostUser;
+use App\Http\Requests\StoreLPostUserRequest;
+use App\Http\Requests\UpdateLPostUserRequest;
 
-class LPostUseController extends Controller
+class LPostUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class LPostUseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreLPostUseRequest  $request
+     * @param  \App\Http\Requests\StoreLPostUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLPostUseRequest $request)
+    public function store(StoreLPostUserRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class LPostUseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\LPostUse  $lPostUse
+     * @param  \App\Models\LPostUser  $LPostUser
      * @return \Illuminate\Http\Response
      */
-    public function show(LPostUse $lPostUse)
+    public function show(LPostUser $LPostUser)
     {
         //
     }
@@ -53,10 +53,10 @@ class LPostUseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\LPostUse  $lPostUse
+     * @param  \App\Models\LPostUser  $LPostUser
      * @return \Illuminate\Http\Response
      */
-    public function edit(LPostUse $lPostUse)
+    public function edit(LPostUser $LPostUser)
     {
         //
     }
@@ -64,11 +64,11 @@ class LPostUseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateLPostUseRequest  $request
-     * @param  \App\Models\LPostUse  $lPostUse
+     * @param  \App\Http\Requests\UpdateLPostUserRequest  $request
+     * @param  \App\Models\LPostUser  $LPostUser
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLPostUseRequest $request, LPostUse $lPostUse)
+    public function update(UpdateLPostUserRequest $request, LPostUser $LPostUser)
     {
         //
     }
@@ -76,10 +76,10 @@ class LPostUseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LPostUse  $lPostUse
+     * @param  \App\Models\LPostUser  $LPostUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LPostUse $lPostUse)
+    public function destroy(LPostUser $LPostUser)
     {
         //
     }

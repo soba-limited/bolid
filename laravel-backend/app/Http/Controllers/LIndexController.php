@@ -15,71 +15,15 @@ class LIndexController extends Controller
     public function index()
     {
         //
-        $fashionID = LCategory::where('slug', 'fashion')->orWhere('parent_slug', 'fashion')->get();
-        $fashionIdArray = [];
-        foreach ($fashionID as $IDs) {
-            array_push($fashionIdArray, $IDs->id);
-        }
-        $fashion = LPost::whereIn('l_category_id', $fashionIdArray)->limit(10)->get();
-
-        $beautyID = LCategory::where('slug', 'beauty')->orWhere('parent_slug', 'beauty')->get();
-        $beautyIdArray = [];
-        foreach ($beautyID as $IDs) {
-            array_push($beautyIdArray, $IDs->id);
-        }
-        $beauty = LPost::whereIn('l_category_id', $beautyIdArray)->limit(10)->get();
-
-        $trendID = LCategory::where('slug', 'trend')->orWhere('parent_slug', 'trend')->get();
-        $trendIdArray = [];
-        foreach ($trendID as $IDs) {
-            array_push($trendIdArray, $IDs->id);
-        }
-        $trend = LPost::whereIn('l_category_id', $trendIdArray)->limit(10)->get();
-
-        $lifestyleID = LCategory::where('slug', 'lifestyle')->orWhere('parent_slug', 'lifestyle')->get();
-        $lifestyleIdArray = [];
-        foreach ($lifestyleID as $IDs) {
-            array_push($lifestyleIdArray, $IDs->id);
-        }
-        $lifestyle = LPost::whereIn('l_category_id', $lifestyleIdArray)->limit(10)->get();
-
-        $weddingID = LCategory::where('slug', 'wedding')->orWhere('parent_slug', 'wedding')->get();
-        $weddingIdArray = [];
-        foreach ($weddingID as $IDs) {
-            array_push($weddingIdArray, $IDs->id);
-        }
-        $wedding = LPost::whereIn('l_category_id', $weddingIdArray)->limit(10)->get();
-
-        $topleaderID = LCategory::where('slug', 'topleader')->orWhere('parent_slug', 'topleader')->get();
-        $topleaderIdArray = [];
-        foreach ($topleaderID as $IDs) {
-            array_push($topleaderIdArray, $IDs->id);
-        }
-        $topleader = LPost::whereIn('l_category_id', $topleaderIdArray)->limit(10)->get();
-
-        $fortuneID = LCategory::where('slug', 'fortune')->orWhere('parent_slug', 'fortune')->get();
-        $fortuneIdArray = [];
-        foreach ($fortuneID as $IDs) {
-            array_push($fortuneIdArray, $IDs->id);
-        }
-        $fortune = LPost::whereIn('l_category_id', $fortuneIdArray)->limit(10)->get();
-
-        $videoID = LCategory::where('slug', 'video')->orWhere('parent_slug', 'video')->get();
-        $videoIdArray = [];
-        foreach ($videoID as $IDs) {
-            array_push($videoIdArray, $IDs->id);
-        }
-        $video = LPost::whereIn('l_category_id', $videoIdArray)->limit(10)->get();
-
+        $fashion = \Commons::LPost_Category('fashion');
+        $beauty = \Commons::LPost_Category('beauty');
+        $trend = \Commons::LPost_Category('trend');
+        $lifestyle = \Commons::LPost_Category('lifestyle');
+        $wedding = \Commons::LPost_Category('wedding');
+        $topleader = \Commons::LPost_Category('topleader');
+        $fortune = \Commons::LPost_Category('fortune');
+        $video = \Commons::LPost_Category('video');
         $present = LPresent::limit(5)->get();
-
-        $sidebar = LSidebar::get();
-
-        $pickup = LPickup::get();
-        $pickupArray = [];
-        foreach ($pickup as $single) {
-            array_push($pickupArray, $single->LPost()->first());
-        }
 
         //それぞれを配列に入れる
         $allarray = [
@@ -92,10 +36,9 @@ class LIndexController extends Controller
             'fortunes' => $fortune,
             'videos' => $video,
             'presents' => $present,
-            'sidebars' => $sidebar,
-            'pickups' => $pickupArray,
         ];
 
+        $allarray = \Commons::LCommons($allarray);
         return $this->jsonResponse($allarray);
     }
 }
