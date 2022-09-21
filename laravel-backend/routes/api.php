@@ -42,9 +42,7 @@ Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_se
 
 Route::post('/liondor/present/{id}/app', [LPresentController::class,'app'])->name('l_present.app');
 Route::get('/liondor/mypage', [LProfileController::class,'show'])->name('l_profile.show');
-Route::get('/liondor/mypage/create', [LProfileController::class,'create'])->name('l_profile.create');
 Route::post('/liondor/mypage/store', [LProfileController::class,'store'])->name('l_profile.store');
-Route::get('/liondor/mypage/edit', [LProfileController::class,'edit'])->name('l_profile.edit');
 Route::post('/liondor/mypage/update', [LProfileController::class,'update'])->name('l_profile.update');
 Route::get('/liondor/mypage/bookmark', [LProfileController::class,'bookmark'])->name('l_profile.bookmark');
 Route::post('/liondor/post/{id}/bookmark', [LPostController::class,'bookmark'])->name('l_post.bookmark');

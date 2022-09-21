@@ -8,6 +8,7 @@ use App\Models\LPickup;
 use App\Models\LSidebar;
 use App\Http\Requests\StoreLPostRequest;
 use App\Http\Requests\UpdateLPostRequest;
+use App\Models\LSeries;
 use App\Models\User;
 
 class LPostController extends Controller
@@ -44,6 +45,24 @@ class LPostController extends Controller
     public function create()
     {
         //
+        $parents = LCategory::where('depth', 0)->select('id', 'name', 'slug')->get();
+        $categories = [];
+        foreach ($parents as $parent) {
+            $children = LCategory::where('parent_slug', $parent->slug)->select('id', 'name')->get()->toArray();
+            $array = [
+                'id' => $parent->id,
+                'name' => $parent->name,
+                'child_category' => $children
+            ];
+            array_unshift($array['child_category'], array('id'=>$parent->id,'name'=>'子カテゴリ無'));
+            array_push($categories, $array);
+        }
+        $series = LSeries::get();
+        $allarray=[
+            'category'=>$categories,
+            'series'=>$series
+        ];
+        return $this->jsonResponse($allarray);
     }
 
     /**
@@ -67,10 +86,16 @@ class LPostController extends Controller
     {
         //
         $posts = LPost::find($id);
+        $seriesArray = [
+            'series_info' => LSeries::find($posts->l_series_id),
+            'prev_post' => LPost::where('l_series_id', $posts->l_series_id)->where('id', '<', $posts->id)->orderBy('id', 'desc')->first(),
+            'next_post' => LPost::where('l_series_id', $posts->l_series_id)->where('id', '>', $posts->id)->orderBy('id', 'asc')->first(),
+        ];
 
         //それぞれを配列に入れる
         $allarray = [
             'posts' => $posts,
+            'series' => $seriesArray,
         ];
 
         $allarray = \Commons::LCommons($allarray);

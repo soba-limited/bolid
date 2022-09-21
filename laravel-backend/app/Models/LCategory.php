@@ -35,7 +35,6 @@ class LCategory extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'slug'=>'integer',
         'depth'=>'integer',
     ];
 
