@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LProfile;
+use App\Models\User;
 use App\Http\Requests\StoreLProfileRequest;
 use App\Http\Requests\UpdateLProfileRequest;
 
@@ -45,9 +46,21 @@ class LProfileController extends Controller
      * @param  \App\Models\LProfile  $lProfile
      * @return \Illuminate\Http\Response
      */
-    public function show(LProfile $lProfile)
+    public function show()
     {
         //
+        //$id = Auth::id();
+        $id = 1;
+        $profile = User::with('LProfile')->with([
+            'LBookmark'=> function ($query) {
+                $query->limit(3);
+            }
+        ])->with([
+            'LPresent'=> function ($query) {
+                $query->limit(3);
+            }
+        ])->find($id);
+        return $this->jsonResponse($profile);
     }
 
     /**

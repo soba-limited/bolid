@@ -19,21 +19,12 @@ class LPresentController extends Controller
     {
         //
         $presents = LPresent::get();
-        $sidebar = LSidebar::get();
-
-        $pickup = LPickup::get();
-        $pickupArray = [];
-        foreach ($pickup as $single) {
-            array_push($pickupArray, $single->LPost()->first());
-        }
 
         //それぞれを配列に入れる
         $allarray = [
             'presents' => $presents,
-            'sidebars' => $sidebar,
-            'pickups' => $pickupArray,
         ];
-
+        $allarray = \Commons::LCommons($allarray);
         return $this->jsonResponse($allarray);
     }
 
@@ -68,21 +59,12 @@ class LPresentController extends Controller
     {
         //
         $presents = LPresent::find($id);
-        $sidebar = LSidebar::get();
-
-        $pickup = LPickup::get();
-        $pickupArray = [];
-        foreach ($pickup as $single) {
-            array_push($pickupArray, $single->LPost()->first());
-        }
 
         //それぞれを配列に入れる
         $allarray = [
             'presents' => $presents,
-            'sidebars' => $sidebar,
-            'pickups' => $pickupArray,
         ];
-
+        $allarray = \Commons::LCommons($allarray);
         return $this->jsonResponse($allarray);
     }
 

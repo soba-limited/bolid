@@ -57,7 +57,7 @@ class LPost extends Model
     {
         return $this->belongsToMany(User::class, 'l_post_user', 'l_post_id', 'user_id');
     }
-    public function LCategories()
+    public function LCategory()
     {
         return $this->belongsTo(LCategory::class);
     }

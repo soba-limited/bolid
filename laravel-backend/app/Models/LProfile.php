@@ -16,6 +16,7 @@ class LProfile extends Model
      */
     protected $fillable = [
         'nicename',
+        'thumbs',
         'sex',
         'zipcode',
         'zip',
