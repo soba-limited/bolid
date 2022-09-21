@@ -27,23 +27,12 @@ class LPostController extends Controller
         } else {
             $posts = LPost::where('l_category_id', $categories->id);
         }
-        $posts = $posts->get();
-
-        $sidebar = LSidebar::get();
-
-        $pickup = LPickup::get();
-        $pickupArray = [];
-        foreach ($pickup as $single) {
-            array_push($pickupArray, $single->LPost()->first());
-        }
-
+        $posts = $posts->with('LCategory')->get();
         //それぞれを配列に入れる
         $allarray = [
             'posts' => $posts,
-            'sidebars' => $sidebar,
-            'pickups' => $pickupArray,
         ];
-
+        $allarray = \Commons::LCommons($allarray);
         return $this->jsonResponse($allarray);
     }
 
@@ -78,21 +67,13 @@ class LPostController extends Controller
     {
         //
         $posts = LPost::find($id);
-        $sidebar = LSidebar::get();
-
-        $pickup = LPickup::get();
-        $pickupArray = [];
-        foreach ($pickup as $single) {
-            array_push($pickupArray, $single->LPost()->first());
-        }
 
         //それぞれを配列に入れる
         $allarray = [
             'posts' => $posts,
-            'sidebars' => $sidebar,
-            'pickups' => $pickupArray,
         ];
 
+        $allarray = \Commons::LCommons($allarray);
         return $this->jsonResponse($allarray);
     }
 

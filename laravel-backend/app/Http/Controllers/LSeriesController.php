@@ -53,22 +53,11 @@ class LSeriesController extends Controller
         //
         $series = LSeries::with('LPost')->find($id);
 
-        $sidebar = LSidebar::get();
-
-        $pickup = LPickup::get();
-        $pickupArray = [];
-        foreach ($pickup as $single) {
-            array_push($pickupArray, $single->LPost()->first());
-        }
-
-
         //それぞれを配列に入れる
         $allarray = [
             'series' => $series,
-            'sidebars' => $sidebar,
-            'pickups' => $pickupArray,
         ];
-
+        $allarray = \Commons::LCommons($allarray);
         return $this->jsonResponse($allarray);
     }
 
