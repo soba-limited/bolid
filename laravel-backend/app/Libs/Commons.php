@@ -20,7 +20,11 @@ class Commons extends Facade
     {
         $side = LSidebar::all();
         $allarray = array_merge($allarray, array('sidebars'=>$side));
-        $pickup = LPickup::with('LPost')->limit(5)->get();
+        $pickup = LPickup::with(['LPost'=>function ($query) {
+            $query->with(['user'=>function ($query) {
+                $query->with('LProfile');
+            }]);
+        }])->inRandomOrder()->limit(5)->get();
         $allarray = array_merge($allarray, array('pickups'=>$pickup));
         return $allarray;
     }

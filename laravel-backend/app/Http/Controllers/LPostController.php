@@ -24,11 +24,13 @@ class LPostController extends Controller
         $categories = LCategory::where('slug', $category)->first();
         if ($categories->depth == 0) {
             $category_array = LCategory::select('id')->where('parent_slug', $category);
-            $posts = LPost::whereIn('l_category_id', $category_array)->orWhere('l_category_id', $categories->id);
+            $posts = LPost::with(['user'=>function ($query) {
+                $query->with('LProfile');
+            }])->whereIn('l_category_id', $category_array)->orWhere('l_category_id', $categories->id);
         } else {
             $posts = LPost::where('l_category_id', $categories->id);
         }
-        $posts = $posts->with('LCategory')->get();
+        $posts = $posts->with('LCategory')->get()->makeHidden(['discription','sub_title','content']);
         //それぞれを配列に入れる
         $allarray = [
             'posts' => $posts,
@@ -85,7 +87,7 @@ class LPostController extends Controller
     public function show($id)
     {
         //
-        $posts = LPost::find($id);
+        $posts = LPost::find($id)->makeVisible(['discription','sub_title','content']);
         $seriesArray = [
             'series_info' => LSeries::find($posts->l_series_id),
             'prev_post' => LPost::where('l_series_id', $posts->l_series_id)->where('id', '<', $posts->id)->orderBy('id', 'desc')->first(),
