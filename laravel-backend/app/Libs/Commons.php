@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Facade;
 use \App\Models\LSidebar;
 use \App\Models\LPickup;
 use \App\Models\LCategory;
+use \App\Models\LPost;
 
 class Commons extends Facade
 {
@@ -31,7 +32,15 @@ class Commons extends Facade
 
     public static function LPost_Category($category)
     {
-        $return = LCategory::with('LPost')->where('slug', $category)->orWhere('parent_slug', $category)->get();
+        $categoryIds = LCategory::where('slug', $category)->orWhere('parent_slug', $category)->pluck('id')->toArray();
+        $categorysingle = LCategory::where('slug', $category)->first();
+        $posts = LPost::whereIn('l_category_id', $categoryIds)->limit(10)->get();
+        $return =[
+            'id' => $categorysingle->id,
+            'name' => $categorysingle->name,
+            'slug' => $categorysingle->slug,
+            'l_post' => $posts
+        ];
         return $return;
     }
 }
