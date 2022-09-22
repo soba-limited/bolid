@@ -76,6 +76,19 @@ class LPostController extends Controller
     public function store(StoreLPostRequest $request)
     {
         //
+        $l_post = LPost::create([
+            'user_id' => $request->user_id,
+            'l_category_id' => $request->l_category_id,
+            'l_series_id' => $request->l_series_id,
+            'title' => $request->title,
+            'thumbs' => $request->thumbs,
+            'mv' => $request->mv,
+            'sub_title' => $request->sub_title,
+            'discription' => $request->discription,
+            'content' => $request->content,
+            'state' => $request->state,
+        ]);
+        return $this->jsonResponse($l_post);
     }
 
     /**
@@ -112,9 +125,16 @@ class LPostController extends Controller
      * @param  \App\Models\LPost  $lPost
      * @return \Illuminate\Http\Response
      */
-    public function edit(LPost $lPost)
+    public function edit($id)
     {
         //
+        $posts = LPost::with(['user'=>function ($query) {
+            $query->with(['LProfile']);
+        }])->with('LCategory')->with('LSeries')->find($id)->makeVisible(['discription','sub_title','content']);
+        $allarray = [
+            'posts' => $posts,
+        ];
+        return $this->jsonResponse($allarray);
     }
 
     /**
@@ -127,6 +147,20 @@ class LPostController extends Controller
     public function update(UpdateLPostRequest $request, LPost $lPost)
     {
         //
+        $l_post = LPost::find($request->id);
+        $l_post->update([
+            'user_id' => $request->user_id,
+            'l_category_id' => $request->l_category_id,
+            'l_series_id' => $request->l_series_id,
+            'title' => $request->title,
+            'thumbs' => $request->thumbs,
+            'mv' => $request->mv,
+            'sub_title' => $request->sub_title,
+            'discription' => $request->discription,
+            'content' => $request->content,
+            'state' => $request->state,
+        ]);
+        return $this->jsonResponse($l_post);
     }
 
     /**
@@ -135,8 +169,11 @@ class LPostController extends Controller
      * @param  \App\Models\LPost  $lPost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LPost $lPost)
+    public function destroy($id)
     {
         //
+        $l_post = LPost::find($id);
+        $l_post->delete();
+        return $this->jsonResponse($l_post);
     }
 }
