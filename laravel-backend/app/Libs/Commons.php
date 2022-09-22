@@ -34,7 +34,9 @@ class Commons extends Facade
     {
         $categoryIds = LCategory::where('slug', $category)->orWhere('parent_slug', $category)->pluck('id')->toArray();
         $categorysingle = LCategory::where('slug', $category)->first();
-        $posts = LPost::whereIn('l_category_id', $categoryIds)->limit(10)->get();
+        $posts = LPost::with('LCategory')->with(['user'=>function ($query) {
+            $query->with(['LProfile']);
+        }])->whereIn('l_category_id', $categoryIds)->limit(10)->get();
         $return =[
             'id' => $categorysingle->id,
             'name' => $categorysingle->name,
