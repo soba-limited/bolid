@@ -2,8 +2,21 @@ import styles from '@/styles/components/home.module.scss'
 import { BlogPattern1, BlogPattern2, BlogPattern3, BlogPattern4, BlogPattern5, BlogPattern6, BlogPattern7, BlogPattern8, BlogPattern9, Button2, FirstClass, Meta } from '@/components'
 import PageLayout from '@/components/Layouts/PageLayout'
 import Container from '@/components/Layouts/container'
+import { apiHost } from '@/lib/constants'
 
-export default function Home() {
+export const getServerSideProps = async () => {
+    const res = await fetch(`${apiHost}/api/liondor/`)
+    const data = await res.json()
+    console.log(data)
+
+    return {
+        props: {
+            posts: data
+        }
+    }
+}
+
+export default function Home({posts}) {
     return (
         <>
             <Meta />

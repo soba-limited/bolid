@@ -1,4 +1,5 @@
 import styles from '@/styles/components/blogTxt.module.scss'
+import { Date } from '@/components'
 
 const BlogTxt = (
   {
@@ -15,6 +16,8 @@ const BlogTxt = (
     smallMb = false
   }
 ) => {
+  const upperCat2 = cat2?.toUpperCase()
+
   return (
     <div className={
       `
@@ -28,9 +31,9 @@ const BlogTxt = (
       `
     }>
       <p className={styles.cat}>
-        <span className="en">{cat}</span>
-        <span className={styles.hr}></span>
-        <span className="en">{cat2}</span>
+        <span className={`en ${cat === undefined ? 'none' : ''}`}>{cat}</span>
+        <span className={cat === undefined ? 'none' : styles.hr}></span>
+        <span className="en">{cat === undefined ? upperCat2 : cat2}</span>
       </p>
       <h3 className={
         `
@@ -44,7 +47,8 @@ const BlogTxt = (
         <span className="space"></span>
         <span className="en">{name}</span>
       </p>
-      <p className={`en ${styles.time}`}>{time}</p>
+      <time className={`en ${styles.time}`}>{time}</time>
+      {/* <Date dateString={time} /> */}
     </div>
   );
 }

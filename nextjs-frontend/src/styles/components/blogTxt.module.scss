@@ -13,7 +13,7 @@
   .hr {
     width: 1px;
     height: 12px;
-    background-color: $w1;
+    background-color: $b1;
     transform: rotate(20deg);
   }
 }
@@ -29,16 +29,24 @@
 
   span {
     font-size: 14px;
+    color: $g1;
   }
 }
 
 .time {
   font-size: 12px;
+  color: $g1;
 }
 
 .white {
   * {
-    color: $w1;
+    color: $w1 !important;
+  }
+
+  .cat {
+    .hr {
+      background-color: $w1;
+    }
   }
 }
 
