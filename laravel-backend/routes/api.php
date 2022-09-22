@@ -78,4 +78,4 @@ Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_
 Route::get('/liondor/presents', [LPresentController::class,'index'])->name('l_present.index');
 Route::get('/liondor/presents/{id}', [LPresentController::class,'show'])->name('l_present.show');
 Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_series.show');
-Route::get('/liondor/faq/{id}', [LSerieController::class,'index'])->name('l_faq.index');
+Route::get('/liondor/faq', [LSerieController::class,'index'])->name('l_faq.index');
