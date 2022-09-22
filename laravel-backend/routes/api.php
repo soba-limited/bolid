@@ -39,6 +39,7 @@ Route::get('/liondor/present/create', [LPresentController::class,'create'])->nam
 Route::post('/liondor/present/store', [LPresentController::class,'store'])->name('l_present.store');
 Route::get('/liondor/present/{id}/edit', [LPresentController::class,'edit'])->name('l_present.edit');
 Route::post('/liondor/present/{id}/update', [LPresentController::class,'update'])->name('l_present.update');
+Route::delete('/liondor/present/{id}/delete', [LPresentController::class,'destroy'])->name('l_present.delete');
 
 //liondor記事投稿者コントローラー
 
@@ -52,7 +53,6 @@ Route::post('/liondor/series/store', [LSeriesController::class,'store'])->name('
 Route::get('/liondor/series/{id}/edit', [LSeriesController::class,'edit'])->name('l_series.edit');
 Route::post('/liondor/series/{id}/update', [LSeriesController::class,'update'])->name('l_series.update');
 Route::delete('/liondor/series/{id}/delete', [LSeriesController::class,'destroy'])->name('l_series.delete');
-
 
 //liondor一般ユーザーコントローラー
 
@@ -71,4 +71,3 @@ Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_
 Route::get('/liondor/presents', [LPresentController::class,'index'])->name('l_present.index');
 Route::get('/liondor/presents/{id}', [LPresentController::class,'show'])->name('l_present.show');
 Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_series.show');
-Route::delete('/liondor/present/{id}/delete', [LPresentController::class,'delete'])->name('l_present.delete');
