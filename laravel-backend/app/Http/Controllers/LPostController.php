@@ -89,7 +89,7 @@ class LPostController extends Controller
         //
         $posts = LPost::with(['user'=>function ($query) {
             $query->with(['LProfile']);
-        }])->find($id)->makeVisible(['discription','sub_title','content']);
+        }])->with('LCategory')->find($id)->makeVisible(['discription','sub_title','content']);
         $seriesArray = [
             'series_info' => LSeries::find($posts->l_series_id),
             'prev_post' => LPost::where('l_series_id', $posts->l_series_id)->where('id', '<', $posts->id)->orderBy('id', 'desc')->first(),
