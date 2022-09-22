@@ -36,15 +36,15 @@ export const siteMeta = {
 
 // ページナビ
 export const pageNaviData = [
-  {name: 'Fashion', link: '/'},
-  {name: 'Beauty', link: '/'},
-  {name: 'Trend', link: '/'},
-  {name: 'Life Style', link: '/'},
-  {name: 'Wedding', link: '/'},
-  {name: 'Top Leader', link: '/'},
-  {name: 'Fortune', link: '/'},
-  {name: 'Video', link: '/'},
-  {name: 'Pick Up Information', link: '/'},
+  {name: 'Fashion', link: '/post/fashion'},
+  {name: 'Beauty', link: '/post/beauty'},
+  {name: 'Trend', link: '/post/trend'},
+  {name: 'Life Style', link: '/post/lifestyle'},
+  {name: 'Wedding', link: '/post/wedding'},
+  {name: 'Top Leader', link: '/post/topleader'},
+  {name: 'Fortune', link: '/post/fortune'},
+  {name: 'Video', link: '/post/video'},
+  {name: 'Pick Up Information', link: '/post/pickUpInformation'},
 ]
 
 // バナー
