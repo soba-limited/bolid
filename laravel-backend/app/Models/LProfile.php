@@ -23,7 +23,7 @@ class LProfile extends Model
         'other_address',
         'age',
         'work_type',
-        'inductry',
+        'industry',
         'occupation',
     ];
 
@@ -39,7 +39,7 @@ class LProfile extends Model
         'other_address',
         'age',
         'work_type',
-        'inductry',
+        'industry',
         'occupation',
         'created_at',
         'updated_at',
