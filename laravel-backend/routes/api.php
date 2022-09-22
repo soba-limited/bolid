@@ -46,12 +46,12 @@ Route::get('/liondor/post/create', [LPostController::class,'create'])->name('l_p
 Route::post('/liondor/post/store', [LPostController::class,'store'])->name('l_post.store');
 Route::get('/liondor/post/{id}/edit', [LPostController::class,'edit'])->name('l_post.edit');
 Route::post('/liondor/post/{id}/update', [LPostController::class,'update'])->name('l_post.update');
-Route::delete('/liondor/post/{id}/delete', [LPostController::class,'delete'])->name('l_post.delete');
+Route::delete('/liondor/post/{id}/delete', [LPostController::class,'destroy'])->name('l_post.delete');
 Route::get('/liondor/series/create', [LSeriesController::class,'create'])->name('l_series.create');
 Route::post('/liondor/series/store', [LSeriesController::class,'store'])->name('l_series.store');
 Route::get('/liondor/series/{id}/edit', [LSeriesController::class,'edit'])->name('l_series.edit');
 Route::post('/liondor/series/{id}/update', [LSeriesController::class,'update'])->name('l_series.update');
-Route::delete('/liondor/series/{id}/delete', [LSeriesController::class,'delete'])->name('l_series.delete');
+Route::delete('/liondor/series/{id}/delete', [LSeriesController::class,'destroy'])->name('l_series.delete');
 
 
 //liondor一般ユーザーコントローラー
