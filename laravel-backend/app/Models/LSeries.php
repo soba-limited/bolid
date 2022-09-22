@@ -24,6 +24,7 @@ class LSeries extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'updated_at'
     ];
 
     /**
