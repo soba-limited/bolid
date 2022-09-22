@@ -23,7 +23,7 @@ class LProfile extends Model
         'other_address',
         'age',
         'work_type',
-        'inductry',
+        'industry',
         'occupation',
     ];
 
@@ -33,6 +33,17 @@ class LProfile extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'sex',
+        'zipcode',
+        'zip',
+        'other_address',
+        'age',
+        'work_type',
+        'industry',
+        'occupation',
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**

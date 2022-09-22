@@ -27,6 +27,9 @@ class LCategory extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**
@@ -35,7 +38,6 @@ class LCategory extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'slug'=>'integer',
         'depth'=>'integer',
     ];
 

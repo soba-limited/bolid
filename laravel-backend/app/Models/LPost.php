@@ -25,9 +25,6 @@ class LPost extends Model
         'discription',
         'content',
         'state',
-        'created_at',
-        'updated_at',
-        'deleted_at',
     ];
 
     /**
@@ -36,6 +33,11 @@ class LPost extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'sub_title',
+        'discription',
+        'content',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**

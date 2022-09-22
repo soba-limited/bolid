@@ -30,25 +30,15 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//liondorコントローラー
-Route::get('/liondor', [LIndexController::class,'index'])->name('l_index');
-Route::get('/liondor/post/{category}', [LPostController::class,'index'])->name('l_post.index');
-Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_post.show');
-Route::get('/liondor/presents', [LPresentController::class,'index'])->name('l_present.index');
-Route::get('/liondor/presents/{id}', [LPresentController::class,'show'])->name('l_present.show');
-Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_series.show');
 
-//liondor一般ユーザーコントローラー
+//liondor管理者コントローラー
 
-Route::post('/liondor/present/{id}/app', [LPresentController::class,'app'])->name('l_present.app');
-Route::get('/liondor/mypage', [LProfileController::class,'show'])->name('l_profile.show');
-Route::get('/liondor/mypage/create', [LProfileController::class,'create'])->name('l_profile.create');
-Route::post('/liondor/mypage/store', [LProfileController::class,'store'])->name('l_profile.store');
-Route::get('/liondor/mypage/edit', [LProfileController::class,'edit'])->name('l_profile.edit');
-Route::post('/liondor/mypage/update', [LProfileController::class,'update'])->name('l_profile.update');
-Route::get('/liondor/mypage/bookmark', [LProfileController::class,'bookmark'])->name('l_profile.bookmark');
-Route::post('/liondor/post/{id}/bookmark', [LPostController::class,'bookmark'])->name('l_post.bookmark');
-Route::delete('/liondor/post/{id}/bookmark_remove', [LPostController::class,'bookmark_remove'])->name('l_post.bookmark_remove');
+Route::get('/liondor/admin/present', [LPresent::class,'admin_index'])->name('l_present.admin_index');
+Route::get('/liondor/admin/present/{id}', [LPresent::class,'admin_show'])->name('l_present.admin_show');
+Route::get('/liondor/present/create', [LPresentController::class,'create'])->name('l_present.create');
+Route::post('/liondor/present/store', [LPresentController::class,'store'])->name('l_present.store');
+Route::get('/liondor/present/{id}/edit', [LPresentController::class,'edit'])->name('l_present.edit');
+Route::post('/liondor/present/{id}/update', [LPresentController::class,'update'])->name('l_present.update');
 
 //liondor記事投稿者コントローラー
 
@@ -63,12 +53,22 @@ Route::get('/liondor/series/{id}/edit', [LSeriesController::class,'edit'])->name
 Route::post('/liondor/series/{id}/update', [LSeriesController::class,'update'])->name('l_series.update');
 Route::delete('/liondor/series/{id}/delete', [LSeriesController::class,'delete'])->name('l_series.delete');
 
-//liondor管理者コントローラー
 
-Route::get('/liondor/admin/present', [LPresent::class,'admin_index'])->name('l_present.admin_index');
-Route::get('/liondor/admin/present/{id}', [LPresent::class,'admin_show'])->name('l_present.admin_show');
-Route::get('/liondor/present/create', [LPresentController::class,'create'])->name('l_present.create');
-Route::post('/liondor/present/store', [LPresentController::class,'store'])->name('l_present.store');
-Route::get('/liondor/present/{id}/edit', [LPresentController::class,'edit'])->name('l_present.edit');
-Route::post('/liondor/present/{id}/update', [LPresentController::class,'update'])->name('l_present.update');
+//liondor一般ユーザーコントローラー
+
+Route::post('/liondor/present/{id}/app', [LPresentController::class,'app'])->name('l_present.app');
+Route::get('/liondor/mypage', [LProfileController::class,'show'])->name('l_profile.show');
+Route::post('/liondor/mypage/store', [LProfileController::class,'store'])->name('l_profile.store');
+Route::post('/liondor/mypage/update', [LProfileController::class,'update'])->name('l_profile.update');
+Route::get('/liondor/mypage/bookmark', [LProfileController::class,'bookmark'])->name('l_profile.bookmark');
+Route::post('/liondor/post/{id}/bookmark', [LPostController::class,'bookmark'])->name('l_post.bookmark');
+Route::delete('/liondor/post/{id}/bookmark_remove', [LPostController::class,'bookmark_remove'])->name('l_post.bookmark_remove');
+
+//liondorコントローラー
+Route::get('/liondor', [LIndexController::class,'index'])->name('l_index');
+Route::get('/liondor/post/{category}', [LPostController::class,'index'])->name('l_post.index');
+Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_post.show');
+Route::get('/liondor/presents', [LPresentController::class,'index'])->name('l_present.index');
+Route::get('/liondor/presents/{id}', [LPresentController::class,'show'])->name('l_present.show');
+Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_series.show');
 Route::delete('/liondor/present/{id}/delete', [LPresentController::class,'delete'])->name('l_present.delete');

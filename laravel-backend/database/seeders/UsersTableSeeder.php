@@ -32,6 +32,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'KojiNakano',
                 'email' => 'koji.nakano@google.com',
                 'password' => Hash::make('nakano'),
+                'l_profile_id' => '2',
             ]
         ];
 

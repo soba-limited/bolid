@@ -24,9 +24,11 @@ class LIndexController extends Controller
         $fortune = \Commons::LPost_Category('fortune');
         $video = \Commons::LPost_Category('video');
         $present = LPresent::limit(5)->get();
+        $special = LPickup::with('LPost')->limit(12)->get();
 
         //それぞれを配列に入れる
         $allarray = [
+            'special' => $special,
             'fashions' => $fashion,
             'beautys' => $beauty,
             'trends' => $trend,

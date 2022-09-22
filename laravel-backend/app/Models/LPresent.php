@@ -27,6 +27,7 @@ class LPresent extends Model
      * @var array<int, string>
      */
     protected $hidden = [
+        'updated_at',
     ];
 
     /**
