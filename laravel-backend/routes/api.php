@@ -12,6 +12,7 @@ use App\Http\Controllers\LPresentController;
 use App\Http\Controllers\LProfileController;
 use App\Http\Controllers\LSerieController;
 use App\Http\Controllers\LSeriesController;
+use App\Http\Controllers\LFaqController;
 
 use App\Models\User;
 
@@ -40,6 +41,12 @@ Route::post('/liondor/present/store', [LPresentController::class,'store'])->name
 Route::get('/liondor/present/{id}/edit', [LPresentController::class,'edit'])->name('l_present.edit');
 Route::post('/liondor/present/{id}/update', [LPresentController::class,'update'])->name('l_present.update');
 Route::delete('/liondor/present/{id}/delete', [LPresentController::class,'destroy'])->name('l_present.delete');
+Route::get('/liondor/faq/create', [LFaqController::class,'create'])->name('l_faq.create');
+Route::post('/liondor/faq/store', [LFaqController::class,'store'])->name('l_faq.store');
+Route::get('/liondor/faq/{id}/edit', [LFaqController::class,'edit'])->name('l_faq.edit');
+Route::post('/liondor/faq/{id}/update', [LFaqController::class,'update'])->name('l_faq.update');
+Route::delete('/liondor/faq/{id}/delete', [LFaqController::class,'destroy'])->name('l_faq.delete');
+
 
 //liondor記事投稿者コントローラー
 
@@ -71,3 +78,4 @@ Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_
 Route::get('/liondor/presents', [LPresentController::class,'index'])->name('l_present.index');
 Route::get('/liondor/presents/{id}', [LPresentController::class,'show'])->name('l_present.show');
 Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_series.show');
+Route::get('/liondor/faq/{id}', [LSerieController::class,'index'])->name('l_faq.index');
