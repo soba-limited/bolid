@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,20 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         //
+        Gate::define('admin', function ($user) {
+            return ($user->account_type == 3);
+        });
+
+        Gate::define('editor', function ($user) {
+            return ($user->account_type >= 2);
+        });
+
+        Gate::define('company', function ($user) {
+            return ($user->account_type == 1);
+        });
+
+        Gate::define('normal', function ($user) {
+            return ($user->account_type == 0);
+        });
     }
 }
