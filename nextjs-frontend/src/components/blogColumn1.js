@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { BlogTxt } from '@/components'
 
 const BlogColumn1 = ({patternData}) => {
-  const data = patternData?.l_post.filter((e, index) => {
+  const data = patternData?.l_post?.filter((e, index) => {
     return index === 0
   })
 

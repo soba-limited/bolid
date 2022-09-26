@@ -5,7 +5,7 @@ import { BlogTxt } from '@/components'
 import dummy10 from '@/images/cms/dummy10.png'
 
 const BlogColumn4 = ({patternData, part2 = false}) => {
-  const data = patternData?.l_post.filter((e, index) => {
+  const data = patternData?.l_post?.filter((e, index) => {
     return part2 ? index > 3 && index < 8 : index !== 0 && index < 5
   })
 

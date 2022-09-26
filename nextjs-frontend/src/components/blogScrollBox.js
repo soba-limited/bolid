@@ -4,11 +4,16 @@ import Link from 'next/link';
 import { BlogTxt } from '@/components'
 import dummy3 from '@/images/cms/dummy3.png'
 
-const BlogScrollBox = ({patternData}) => {
-  const dataOdd = patternData?.l_post.filter((e, index) => {
+const BlogScrollBox = ({patternData, route2 = false}) => {
+  const dataOdd = route2 ? patternData?.filter((e, index) => {
+    return index !== 0 && index % 2 === 1 && index < 8
+  }) : patternData?.l_post?.filter((e, index) => {
     return index !== 0 && index % 2 === 1 && index < 8
   })
-  const dataEven = patternData?.l_post.filter((e, index) => {
+
+  const dataEven = route2 ? patternData?.filter((e, index) => {
+    return index !== 0 && index % 2 === 0 && index < 9
+  }) : patternData?.l_post?.filter((e, index) => {
     return index !== 0 && index % 2 === 0 && index < 9
   })
 
@@ -27,14 +32,27 @@ const BlogScrollBox = ({patternData}) => {
                   priority
                 />
               </div>
-              <BlogTxt
-                smallMb
-                cat={item.l_category.parent_slug?.toUpperCase()}
-                cat2={item.l_category.name}
-                ttl={item.title}
-                name={item.user.name}
-                time={item.created_at}
-              />
+              {
+                route2
+                ?
+                <BlogTxt
+                  smallMb
+                  cat={item.l_post.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_post.l_category.name}
+                  ttl={item.l_post.title}
+                  name={item.l_post.user.name}
+                  time={item.l_post.created_at}
+                />
+                :
+                <BlogTxt
+                  smallMb
+                  cat={item.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_category.name}
+                  ttl={item.title}
+                  name={item.user.name}
+                  time={item.created_at}
+                />
+              }
             </a>
           </Link>
         ))}
@@ -52,14 +70,27 @@ const BlogScrollBox = ({patternData}) => {
                   priority
                 />
               </div>
-              <BlogTxt
-                smallMb
-                cat={item.l_category.parent_slug?.toUpperCase()}
-                cat2={item.l_category.name}
-                ttl={item.title}
-                name={item.user.name}
-                time={item.created_at}
-              />
+              {
+                route2
+                ?
+                <BlogTxt
+                  smallMb
+                  cat={item.l_post.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_post.l_category.name}
+                  ttl={item.l_post.title}
+                  name={item.l_post.user.name}
+                  time={item.l_post.created_at}
+                />
+                :
+                <BlogTxt
+                  smallMb
+                  cat={item.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_category.name}
+                  ttl={item.title}
+                  name={item.user.name}
+                  time={item.created_at}
+                />
+              }
             </a>
           </Link>
         ))}

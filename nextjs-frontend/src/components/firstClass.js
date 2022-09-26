@@ -5,7 +5,7 @@ import dummy1 from '@/images/cms/dummy1.png'
 import { BlogTxt } from '@/components'
 
 const FirstClass = ({firstClassData}) => {
-  const firstData = firstClassData.l_post.filter((e, index) => {
+  const firstData = firstClassData?.l_post?.filter((e, index) => {
     return index === 1
   })
 

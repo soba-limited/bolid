@@ -4,9 +4,11 @@ import Link from 'next/link';
 import { BlogTxt } from '@/components'
 import dummy7 from '@/images/cms/dummy7.png'
 
-const BlogColumn3 = ({patternData, part2 = false}) => {
-  const data = patternData?.l_post.filter((e, index) => {
-    return part2 ? index !== 0 && index < 4 : index > 9 && index < 13
+const BlogColumn3 = ({patternData, part2 = false, route2 = false}) => {
+  const data = route2 ? patternData?.filter((e, index) => {
+    return part2 ? index !== 0 && index < 4 : index > 8 && index < 12
+  }) : patternData?.l_post?.filter((e, index) => {
+    return part2 ? index !== 0 && index < 4 : index > 8 && index < 12
   })
 
   return (
@@ -23,14 +25,27 @@ const BlogColumn3 = ({patternData, part2 = false}) => {
                 priority
               />
             </div>
-            <BlogTxt
-              smallMb
-              cat={item.l_category.parent_slug?.toUpperCase()}
-              cat2={item.l_category.name}
-              ttl={item.title}
-              name={item.user.name}
-              time={item.created_at}
-            />
+            {
+              route2
+              ?
+              <BlogTxt
+                smallMb
+                cat={item.l_post.l_category.parent_slug?.toUpperCase()}
+                cat2={item.l_post.l_category.name}
+                ttl={item.l_post.title}
+                name={item.l_post.user.name}
+                time={item.l_post.created_at}
+              />
+              :
+              <BlogTxt
+                smallMb
+                cat={item.l_category.parent_slug?.toUpperCase()}
+                cat2={item.l_category.name}
+                ttl={item.title}
+                name={item.user.name}
+                time={item.created_at}
+              />
+            }
           </a>
         </Link>
       ))}

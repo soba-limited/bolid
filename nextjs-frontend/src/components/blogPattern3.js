@@ -27,7 +27,7 @@ const BlogPattern3 = () => {
             cat2="TREND & STORY"
             ttl="【インフルエンサーインタビューvol.5】魅せるインスタブランディング×望む未来を創るコーチング・美容ライフ　梅宮翠さん"
             name="ARATA HOMMA"
-            time="2022年7月20日"
+            time="2022-09-26T04:54:36.000000Z"
             fs24
           />
         </a>

@@ -17,7 +17,7 @@ export const getServerSideProps = async () => {
 
 export default function Home({posts}) {
     const firstClassData = posts.fashions
-    // const specialData = posts.special
+    const specialData = posts.special
     const fashionData = posts.fashions
     const beautyData = posts.beautys
     const trendData = posts.trends
@@ -27,6 +27,7 @@ export default function Home({posts}) {
     const fortuneData = posts.fortunes
     const videoData = posts.videos
     const pickupData = posts.pickups
+    const presentData = posts.presents
 
     return (
         <>
@@ -42,7 +43,7 @@ export default function Home({posts}) {
             <section className={`cont ${styles.cont2}`}>
                 <Container>
                     <h2 className="ttl1 ivy">SPECIAL</h2>
-                    <BlogPattern1 />
+                    <BlogPattern1 pattern={specialData} route2 />
                 </Container>
             </section>
 
@@ -128,7 +129,7 @@ export default function Home({posts}) {
             <section className={`cont ${styles.cont14}`}>
                 <Container>
                     <h2 className="ttl1 ivy">PRESENT</h2>
-                    <BlogPattern9 />
+                    <BlogPattern9 pattern={presentData} />
                     <Button2 />
                 </Container>
             </section>

@@ -4,8 +4,10 @@ import dummy2 from '@/images/cms/dummy2.png'
 import Link from 'next/link';
 import { BlogTxt } from '@/components'
 
-const BlogPickup = ({patternData}) => {
-  const data = patternData?.l_post.filter((e, index) => {
+const BlogPickup = ({patternData, route2 = false}) => {
+  const data = route2 ? patternData?.filter((e, index) => {
+    return index === 0
+  }) : patternData?.l_post?.filter((e, index) => {
     return index === 0
   })
 
@@ -24,18 +26,35 @@ const BlogPickup = ({patternData}) => {
                 priority
               />
             </div>
-            <div className={styles.txtBox}>
-              <BlogTxt
-                fs22
-                tac
-                white
-                cat={item.l_category.parent_slug?.toUpperCase()}
-                cat2={item.l_category.name}
-                ttl={item.title}
-                name={item.user.name}
-                time={item.created_at}
-              />
-            </div>
+            {
+              route2
+              ?
+              <div className={styles.txtBox}>
+                <BlogTxt
+                  fs22
+                  tac
+                  white
+                  cat={item.l_post.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_post.l_category.name}
+                  ttl={item.l_post.title}
+                  name={item.l_post.user.name}
+                  time={item.l_post.created_at}
+                />
+              </div>
+              :
+              <div className={styles.txtBox}>
+                <BlogTxt
+                  fs22
+                  tac
+                  white
+                  cat={item.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_category.name}
+                  ttl={item.title}
+                  name={item.user.name}
+                  time={item.created_at}
+                />
+              </div>
+            }
           </a>
         </Link>
       ))}

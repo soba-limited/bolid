@@ -39,15 +39,15 @@ export const siteMeta = {
 
 // ページナビ
 export const pageNaviData = [
-  {name: 'Fashion', link: '/post/fashion'},
-  {name: 'Beauty', link: '/post/beauty'},
-  {name: 'Trend', link: '/post/trend'},
-  {name: 'Life Style', link: '/post/lifestyle'},
-  {name: 'Wedding', link: '/post/wedding'},
-  {name: 'Top Leader', link: '/post/topleader'},
-  {name: 'Fortune', link: '/post/fortune'},
-  {name: 'Video', link: '/post/video'},
-  {name: 'Pick Up Information', link: '/post/pickUpInformation'},
+  {slug: 'fashion', name: 'Fashion', link: '/post/fashion'},
+  {slug: 'beauty', name: 'Beauty', link: '/post/beauty'},
+  {slug: 'trend', name: 'Trend', link: '/post/trend'},
+  {slug: 'lifestyle', name: 'Life Style', link: '/post/lifestyle'},
+  {slug: 'wedding', name: 'Wedding', link: '/post/wedding'},
+  {slug: 'topleader', name: 'Top Leader', link: '/post/topleader'},
+  {slug: 'fortune', name: 'Fortune', link: '/post/fortune'},
+  {slug: 'video', name: 'Video', link: '/post/video'},
+  {slug: 'pickupinformation', name: 'Pick Up Information', link: '/post/pickUpInformation'},
 ]
 
 // カテゴリナビ

@@ -1,9 +1,8 @@
-// import { parseISO, format } from 'date-fns'
-// import ja from 'date-fns/locale/ja'
+import { parseISO, format } from 'date-fns'
 
-// const Date = ({ dateString }) => {
-//   const date = parseISO(dateString)
-//   return <time dateTime={dateString}>{format(date, 'yyyy年MM月dd日', {locale:ja})}</time>
-// }
+const Date = ({ dateString }) => {
+  const date = parseISO(dateString)
+  return <time dateTime={dateString}>{format(date, 'yyyy年MM月dd日')}</time>
+}
 
-// export default Date
+export default Date

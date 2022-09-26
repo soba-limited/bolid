@@ -29,11 +29,11 @@ const BlogPattern8 = ({pattern}) => {
                 <BlogTxt
                   smallMb
                   fs14
-                  cat="FASHION"
-                  cat2="TREND & STORY"
-                  ttl="フェンディ 2022年秋冬クチュールコレクション"
-                  name="ARATA HOMMA"
-                  time="2022年7月20日"
+                  cat={item.l_post.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_post.l_category.name}
+                  ttl={item.l_post.title}
+                  name={item.l_post.user.name}
+                  time={item?.l_post.created_at}
                 />
               </div>
             </a>

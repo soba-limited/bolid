@@ -30,11 +30,17 @@ const BlogTxt = (
         ${fs14 ? styles.fs14 : ''}
       `
     }>
-      <p className={styles.cat}>
-        <span className={`en ${cat === undefined ? 'none' : ''}`}>{cat}</span>
-        <span className={cat === undefined ? 'none' : styles.hr}></span>
-        <span className="en">{cat === undefined ? upperCat2 : cat2}</span>
-      </p>
+      {
+        cat2 === undefined
+        ?
+        ''
+        :
+        <p className={styles.cat}>
+          <span className={`en ${cat === undefined ? 'none' : ''}`}>{cat}</span>
+          <span className={cat === undefined ? 'none' : styles.hr}></span>
+          <span className="en">{cat === undefined ? upperCat2 : cat2}</span>
+        </p>
+      }
       <h3 className={
         `
           ${styles.singleTtl}
@@ -47,8 +53,7 @@ const BlogTxt = (
         <span className="space"></span>
         <span className="en">{name}</span>
       </p>
-      <time className={`en ${styles.time}`}>{time}</time>
-      {/* <Date dateString={time} /> */}
+      <p className={`en ${styles.time}`}><Date dateString={time} /></p>
     </div>
   );
 }

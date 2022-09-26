@@ -2,11 +2,11 @@ import styles from '@/styles/components/blogPattern5.module.scss'
 import dummy23 from '@/images/cms/dummy23.png'
 import Link from 'next/link'
 import Image from 'next/image'
-import play from '@/images/common/play.svg'
+// import play from '@/images/common/play.svg'
 import { BlogTxt } from '@/components'
 
 const BlogPattern5 = ({pattern}) => {
-  const data = pattern?.l_post.filter((e, index) => {
+  const data = pattern?.l_post?.filter((e, index) => {
     return index < 6
   })
 
@@ -23,14 +23,14 @@ const BlogPattern5 = ({pattern}) => {
                 sizes="(min-width: 1340px) 412px, (min-width: 768px) 230px, 100vw"
                 priority
               />
-              <div className={styles.play}>
+              {/* <div className={styles.play}>
                 <Image
                   src={play}
                   alt=""
                   layout="responsive"
                   sizes="48px"
                 />
-              </div>
+              </div> */}
             </div>
             <BlogTxt
               smallMb
