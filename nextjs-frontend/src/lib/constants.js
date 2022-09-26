@@ -23,6 +23,9 @@ import dummy20 from '@/images/cms/dummy20.png'
 import dummy21 from '@/images/cms/dummy21.png'
 import dummy22 from '@/images/cms/dummy22.png'
 
+// API連携ホスト名
+export const apiHost = process.env.API_DOMAIN
+
 // サイト情報
 export const siteMeta = {
   siteTitle: 'Bolide',
@@ -36,16 +39,81 @@ export const siteMeta = {
 
 // ページナビ
 export const pageNaviData = [
-  {name: 'Fashion', link: '/post/fashion'},
-  {name: 'Beauty', link: '/post/beauty'},
-  {name: 'Trend', link: '/post/trend'},
-  {name: 'Life Style', link: '/post/lifestyle'},
-  {name: 'Wedding', link: '/post/wedding'},
-  {name: 'Top Leader', link: '/post/topleader'},
-  {name: 'Fortune', link: '/post/fortune'},
-  {name: 'Video', link: '/post/video'},
-  {name: 'Pick Up Information', link: '/post/pickUpInformation'},
+  {slug: 'fashion', name: 'Fashion', link: '/post/fashion'},
+  {slug: 'beauty', name: 'Beauty', link: '/post/beauty'},
+  {slug: 'trend', name: 'Trend', link: '/post/trend'},
+  {slug: 'lifestyle', name: 'Life Style', link: '/post/lifestyle'},
+  {slug: 'wedding', name: 'Wedding', link: '/post/wedding'},
+  {slug: 'topleader', name: 'Top Leader', link: '/post/topleader'},
+  {slug: 'fortune', name: 'Fortune', link: '/post/fortune'},
+  {slug: 'video', name: 'Video', link: '/post/video'},
+  {slug: 'pickupinformation', name: 'Pick Up Information', link: '/post/pickUpInformation'},
 ]
+
+// カテゴリナビ
+export const catNavData = {
+  fashion: [
+    {name: "All Topics", link: "/post/fashion"},
+    {name: "News", link: "/post/fashion?cat=News"},
+    {name: "Trend", link: "/post/fashion?cat=Trend"},
+    {name: "Snap", link: "/post/fashion?cat=Snap"},
+    {name: "FirstClass", link: "/post/fashion?cat=FirstClass"},
+  ],
+  beauty: [
+    {name: "All Topics", link: "/post/beauty"},
+    {name: "News", link: "/post/beauty?cat=News"},
+    {name: "Trend", link: "/post/beauty?cat=Trend"},
+    {name: "Wellness", link: "/post/beauty?cat=Wellness"},
+    {name: "Expart", link: "/post/beauty?cat=Expart"},
+    {name: "FirstClass", link: "/post/beauty?cat=FirstClass"},
+  ],
+  trend: [
+    {name: "All Topics", link: "/post/trend"},
+    {name: "SDGs", link: "/post/trend?cat=SDGs"},
+    {name: "metaverse", link: "/post/trend?cat=metaverse"},
+    {name: "virtualcurrency", link: "/post/trend?cat=virtualcurrency"},
+    {name: "Blockchain", link: "/post/trend?cat=Blockchain"},
+    {name: "NFT", link: "/post/trend?cat=NFT"},
+    {name: "spaceBusiness", link: "/post/trend?cat=spaceBusiness"},
+    {name: "FirstClass", link: "/post/trend?cat=FirstClass"},
+  ],
+  lifestyle: [
+    {name: "All Topics", link: "/post/lifestyle"},
+    {name: "News", link: "/post/lifestyle?cat=News"},
+    {name: "Gurmet", link: "/post/lifestyle?cat=Gurmet"},
+    {name: "Culture", link: "/post/lifestyle?cat=Culture"},
+    {name: "Interior", link: "/post/lifestyle?cat=Interior"},
+    {name: "RealEstate", link: "/post/lifestyle?cat=RealEstate"},
+    {name: "Travel", link: "/post/lifestyle?cat=Travel"},
+    {name: "Entertaiment", link: "/post/lifestyle?cat=Entertaiment"},
+    {name: "FirstClass", link: "/post/lifestyle?cat=FirstClass"},
+
+  ],
+  wedding: [
+    {name: "All Topics", link: "/post/wedding"},
+    {name: "News", link: "/post/wedding?cat=News"},
+    {name: "Dress", link: "/post/wedding?cat=Dress"},
+    {name: "Weddinghall", link: "/post/wedding?cat=Weddinghall"},
+    {name: "Accessory", link: "/post/wedding?cat=Accessory"},
+    {name: "Bouquet", link: "/post/wedding?cat=Bouquet"},
+    {name: "Bresent", link: "/post/wedding?cat=Bresent"},
+    {name: "FirstClass", link: "/post/wedding?cat=FirstClass"},
+  ],
+  topleader: [
+    {name: "All Topics", link: "/post/topleader"},
+    {name: "Interview", link: "/post/topleader?cat=Interview"},
+    {name: "Career", link: "/post/topleader?cat=Career"},
+  ],
+  fortune: [
+    {name: "All Topics", link: "/post/fortune"},
+    {name: "Daily", link: "/post/fortune?cat=Daily"},
+    {name: "Monthly", link: "/post/fortune?cat=Monthly"},
+    {name: "Yealy", link: "/post/fortune?cat=Yealy"},
+  ],
+  video: [
+    {name: "All Topics", link: "/post/video"},
+  ],
+}
 
 // バナー
 export const bannarData = [

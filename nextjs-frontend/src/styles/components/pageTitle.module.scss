@@ -6,4 +6,8 @@
   border-bottom: 1px solid $g3;
   text-align: center;
   @include mb(64px);
+
+  &.mb0 {
+    margin-bottom: 0;
+  }
 }

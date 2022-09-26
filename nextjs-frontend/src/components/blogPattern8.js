@@ -1,20 +1,24 @@
 import styles from '@/styles/components/blogPattern8.module.scss'
 import Link from 'next/link';
 import Image from 'next/image';
-import { dummyImage7 } from '@/lib/constants';
+import dummy22 from '@/images/cms/dummy22.png'
 import { BlogTxt } from '@/components'
 
-const BlogPattern8 = () => {
+const BlogPattern8 = ({pattern}) => {
+  const data = pattern?.filter((e, index) => {
+    return index < 3
+  })
+
   return (
     <article className={styles.article}>
       <h2 className={`${styles.ttl} ivy ttl1`}>PICKUP INFOMATION</h2>
       <div className={styles.flex}>
-        {dummyImage7.map((items, index) => (
-          <Link href="/" key={index}>
+        {data?.map((item) => (
+          <Link href={`/post/show/${item.id}`} key={item.id}>
             <a className={styles.blogLink}>
               <div className={styles.imgBox}>
                 <Image
-                  src={items.src}
+                  src={dummy22}
                   alt=""
                   layout="responsive"
                   sizes="(min-width: 1340px) 124px, (min-width: 768px) 124px, 100vw"
@@ -25,11 +29,11 @@ const BlogPattern8 = () => {
                 <BlogTxt
                   smallMb
                   fs14
-                  cat="FASHION"
-                  cat2="TREND & STORY"
-                  ttl="フェンディ 2022年秋冬クチュールコレクション"
-                  name="ARATA HOMMA"
-                  time="2022年7月20日"
+                  cat={item.l_post.l_category.parent_slug?.toUpperCase()}
+                  cat2={item.l_post.l_category.name}
+                  ttl={item.l_post.title}
+                  name={item.l_post.user.name}
+                  time={item?.l_post.created_at}
                 />
               </div>
             </a>

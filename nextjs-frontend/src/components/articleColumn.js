@@ -1,25 +1,27 @@
-import styles from '@/styles/components/blogColumn4.module.scss'
-import Link from 'next/link'
-import Image from 'next/image'
-import { BlogTxt } from '@/components'
-import dummy10 from '@/images/cms/dummy10.png'
+import styles from '@/styles/components/articleColumn.module.scss'
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import dummy11 from '@/images/cms/dummy11.png'
+import BlogTxt from './blogTxt';
 
-const BlogColumn4 = ({patternData, part2 = false}) => {
-  const data = patternData?.l_post?.filter((e, index) => {
-    return part2 ? index > 3 && index < 8 : index !== 0 && index < 5
-  })
+const ArticleColumn = ({posts}) => {
+  const router = useRouter();
+  const { category, cat } = router.query
+
+  const sort = posts.posts.filter(e => e.l_category.name === cat || undefined === cat)
 
   return (
     <article className={styles.article}>
-      {data?.map((item) => (
+      {sort.map((item) => (
         <Link href={`/post/show/${item.id}`} key={item.id}>
           <a className={styles.blogLink}>
             <div className={styles.imgBox}>
               <Image
-                src={dummy10}
+                src={dummy11}
                 alt=""
                 layout="responsive"
-                sizes="(min-width: 1340px) 300px, (min-width: 768px) 180px, 100vw"
+                sizes="(min-width: 1340px) 288px, (min-width: 768px) 288px, 100vw"
                 priority
               />
             </div>
@@ -38,4 +40,4 @@ const BlogColumn4 = ({patternData, part2 = false}) => {
   );
 }
 
-export default BlogColumn4;
+export default ArticleColumn;

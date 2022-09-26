@@ -1,15 +1,18 @@
 @import '../variables.scss';
 
-.naviList{
+.nav {
+  border-bottom: 1px solid $g3;
+  @include mb(56px);
+
   ul {
     @include flex(center, center);
-    @include gap(4px 40px, 4px 20px);
+    @include gap(40px);
 
     a {
       font-size: 14px;
       @include p(24px 0);
-      transition: .2s ease-out;
       position: relative;
+      transition: .2s ease-out;
 
       &::after {
         content: "";
@@ -30,19 +33,18 @@
 
       &.current {
         font-weight: 600;
-
-        &::after {
-          transform: scaleX(1);
-        }
       }
     }
 
-    &.colorWhite {
-      justify-content: space-between;
-
-      a {
-        color: $w1;
+    li:first-of-type {
+      a.all {
+        font-weight: 600;
       }
+    }
+
+    a.current::after,
+    li:first-of-type a.all::after {
+      transform: scaleX(1);
     }
   }
 }

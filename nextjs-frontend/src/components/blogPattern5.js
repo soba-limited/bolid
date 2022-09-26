@@ -1,12 +1,49 @@
 import styles from '@/styles/components/blogPattern5.module.scss'
-import { BlogColumn3 } from '@/components'
+import dummy23 from '@/images/cms/dummy23.png'
+import Link from 'next/link'
+import Image from 'next/image'
+// import play from '@/images/common/play.svg'
+import { BlogTxt } from '@/components'
 
-const BlogPattern5 = () => {
+const BlogPattern5 = ({pattern}) => {
+  const data = pattern?.l_post?.filter((e, index) => {
+    return index < 6
+  })
+
   return (
-    <div className={styles.flex}>
-      <BlogColumn3 />
-      <BlogColumn3 />
-    </div>
+    <article className={styles.article}>
+      {data?.map((item) => (
+        <Link href={`/post/show/${item.id}`} key={item.id}>
+          <a className={styles.blogLink}>
+            <div className={styles.imgBox}>
+              <Image
+                src={dummy23}
+                alt=""
+                layout="responsive"
+                sizes="(min-width: 1340px) 412px, (min-width: 768px) 230px, 100vw"
+                priority
+              />
+              {/* <div className={styles.play}>
+                <Image
+                  src={play}
+                  alt=""
+                  layout="responsive"
+                  sizes="48px"
+                />
+              </div> */}
+            </div>
+            <BlogTxt
+              smallMb
+              cat={item.l_category.parent_slug?.toUpperCase()}
+              cat2={item.l_category.name}
+              ttl={item.title}
+              name={item.user.name}
+              time={item.created_at}
+            />
+          </a>
+        </Link>
+      ))}
+    </article>
   );
 }
 
