@@ -40,11 +40,11 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('company', function ($user) {
-            return ($user->account_type == 1);
+            return ($user->account_type == 1 && $user->account_type >= 2);
         });
 
         Gate::define('normal', function ($user) {
-            return ($user->account_type == 0);
+            return ($user->account_type == 0 && $user->account_type >= 2);
         });
     }
 }

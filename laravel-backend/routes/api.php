@@ -63,13 +63,15 @@ Route::delete('/liondor/series/{id}/delete', [LSeriesController::class,'destroy'
 
 //liondor一般ユーザーコントローラー
 
-Route::post('/liondor/present/{id}/app', [LPresentController::class,'app'])->name('l_present.app');
-Route::get('/liondor/mypage', [LProfileController::class,'show'])->name('l_profile.show');
-Route::post('/liondor/mypage/store', [LProfileController::class,'store'])->name('l_profile.store');
-Route::post('/liondor/mypage/update', [LProfileController::class,'update'])->name('l_profile.update');
-Route::get('/liondor/mypage/bookmark', [LProfileController::class,'bookmark'])->name('l_profile.bookmark');
-Route::post('/liondor/post/{id}/bookmark', [LPostController::class,'bookmark'])->name('l_post.bookmark');
-Route::delete('/liondor/post/{id}/bookmark_remove', [LPostController::class,'bookmark_remove'])->name('l_post.bookmark_remove');
+Route::group(['middleware' => ['auth','can:normal']], function () {
+    Route::post('/liondor/present/{id}/app', [LPresentController::class,'app'])->name('l_present.app');
+    Route::get('/liondor/mypage', [LProfileController::class,'show'])->name('l_profile.show');
+    Route::post('/liondor/mypage/store', [LProfileController::class,'store'])->name('l_profile.store');
+    Route::post('/liondor/mypage/update', [LProfileController::class,'update'])->name('l_profile.update');
+    Route::post('/liondor/post/{id}/bookmark', [LPostController::class,'bookmark'])->name('l_post.bookmark');
+    Route::delete('/liondor/post/{id}/bookmark_remove', [LPostController::class,'bookmark_remove'])->name('l_post.bookmark_remove');
+    Route::get('/dashboard', [LProfileController::class,'test'])->name('l_profile.test');
+});
 
 //liondorコントローラー
 Route::get('/liondor', [LIndexController::class,'index'])->name('l_index');
@@ -78,4 +80,4 @@ Route::get('/liondor/post/show/{id}', [LPostController::class,'show'])->name('l_
 Route::get('/liondor/presents', [LPresentController::class,'index'])->name('l_present.index');
 Route::get('/liondor/presents/{id}', [LPresentController::class,'show'])->name('l_present.show');
 Route::get('/liondor/series/{id}', [LSerieController::class,'show'])->name('l_series.show');
-Route::get('/liondor/faq', [LSerieController::class,'index'])->name('l_faq.index');
+Route::get('/liondor/faq', [LFaqController::class,'index'])->name('l_faq.index');

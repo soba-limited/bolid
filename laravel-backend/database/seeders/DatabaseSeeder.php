@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\LPickup;
-use App\Models\LSeries;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,6 +30,7 @@ class DatabaseSeeder extends Seeder
             LPickupSeeder::class,
             LPresentSeeder::class,
             LPostUserSeeder::class,
+            LFaqSeeder::class,
         ]);
     }
 }

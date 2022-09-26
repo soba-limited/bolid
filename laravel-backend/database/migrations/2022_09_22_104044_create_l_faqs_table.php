@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('question');
             $table->string('answer');
-            $table->integer('type');
+            $table->integer('type')->default(0);
             $table->timestamps();
         });
     }
