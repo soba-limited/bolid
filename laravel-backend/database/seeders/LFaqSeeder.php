@@ -6,9 +6,9 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use \App\Models\LPost;
+use \App\Models\LFaq;
 
-class LPostSeeder extends Seeder
+class LFaqSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,9 +18,9 @@ class LPostSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('l_posts')->delete();
-        DB::unprepared("ALTER TABLE l_posts AUTO_INCREMENT = 1 ");
+        DB::table('l_faqs')->delete();
+        DB::unprepared("ALTER TABLE l_faqs AUTO_INCREMENT = 1 ");
 
-        Lpost::factory(300)->create();
+        LFaq::factory(100)->create();
     }
 }
