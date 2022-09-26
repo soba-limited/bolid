@@ -16,6 +16,13 @@ class LFaqController extends Controller
     public function index()
     {
         //
+        $company_faq = LFaq::where('type', 1)->get();
+        $user_faq = LFaq::where('type', 0)->get();
+        $allarray = [
+            'company_faq'=>$company_faq,
+            'user_faq'=>$user_faq,
+        ];
+        return $this->jsonResponse($allarray);
     }
 
     /**

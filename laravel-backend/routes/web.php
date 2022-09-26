@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LFaqController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
@@ -35,6 +36,7 @@ Route::get('/liondor/post/{category}', [LPostController::class,'index'])->name('
 Route::get('/liondor/present/', [LPresentController::class,'index'])->name('l_present.index');
 Route::get('/liondor/present/{id}', [LPresentController::class,'show'])->name('l_present.show');
 Route::get('/liondor/series/{id}', [LSeriesController::class,'show'])->name('l_series.show');
+Route::get('/liondor/faq', [LFaqController::class,'index'])->name('l_faq.index');
 
 Route::get('/liondor/mypage', [LProfileController::class,'show'])->name('l_profile.show');
 
