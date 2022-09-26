@@ -30,7 +30,7 @@ const ArticleColumn = ({posts}) => {
               cat={item.l_category.parent_slug?.toUpperCase()}
               cat2={item.l_category.name}
               ttl={item.title}
-              name="ARATA HOMMA"
+              name={item.user.name}
               time={item.created_at}
             />
           </a>

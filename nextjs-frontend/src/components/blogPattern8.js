@@ -1,20 +1,24 @@
 import styles from '@/styles/components/blogPattern8.module.scss'
 import Link from 'next/link';
 import Image from 'next/image';
-import { dummyImage7 } from '@/lib/constants';
+import dummy22 from '@/images/cms/dummy22.png'
 import { BlogTxt } from '@/components'
 
-const BlogPattern8 = () => {
+const BlogPattern8 = ({pattern}) => {
+  const data = pattern?.filter((e, index) => {
+    return index < 3
+  })
+
   return (
     <article className={styles.article}>
       <h2 className={`${styles.ttl} ivy ttl1`}>PICKUP INFOMATION</h2>
       <div className={styles.flex}>
-        {dummyImage7.map((items, index) => (
-          <Link href="/" key={index}>
+        {data?.map((item) => (
+          <Link href={`/post/show/${item.id}`} key={item.id}>
             <a className={styles.blogLink}>
               <div className={styles.imgBox}>
                 <Image
-                  src={items.src}
+                  src={dummy22}
                   alt=""
                   layout="responsive"
                   sizes="(min-width: 1340px) 124px, (min-width: 768px) 124px, 100vw"
