@@ -47,7 +47,18 @@ class LPresentController extends Controller
     public function store(StoreLPresentRequest $request)
     {
         //
-        return 'test';
+        $l_post = LPresent::create([
+            'title' => $request->title,
+            'offer' => $request->offer,
+            'limit' => $request->limit
+        ]);
+        $id = $l_post->id;
+        $file_name = $request->file('thumbs')->getClientOriginalName();
+        $request->file('thumbs')->storeAs('images/present/'.$id, $file_name, 'public');
+        $thumbs = 'images/present/'.$id."/".$file_name;
+        $l_post->thumbs = $thumbs;
+        $l_post->save();
+        return $this->jsonResponse($l_post);
     }
 
     /**
