@@ -114,7 +114,7 @@ export default function Home({posts}) {
                 <Container>
                     <h2 className="ttl1 ivy">ON-LINE SALON</h2>
                     <BlogPattern6 />
-                    <Button2 />
+                    <Button2 link="/" />
                 </Container>
             </section>
 
@@ -130,7 +130,7 @@ export default function Home({posts}) {
                 <Container>
                     <h2 className="ttl1 ivy">PRESENT</h2>
                     <BlogPattern9 pattern={presentData} />
-                    <Button2 />
+                    <Button2 link="/" />
                 </Container>
             </section>
         </>
