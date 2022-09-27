@@ -47,6 +47,7 @@ class LPresentController extends Controller
     public function store(StoreLPresentRequest $request)
     {
         //
+        return 'test';
     }
 
     /**
@@ -100,5 +101,9 @@ class LPresentController extends Controller
     public function destroy(LPresent $lPresent)
     {
         //
+    }
+
+    public function app()
+    {
     }
 }
