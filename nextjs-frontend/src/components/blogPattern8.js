@@ -1,6 +1,6 @@
 import styles from '@/styles/components/blogPattern8.module.scss'
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from 'next/link'
+import Image from 'next/image'
 import dummy22 from '@/images/cms/dummy22.png'
 import { BlogTxt } from '@/components'
 
@@ -46,4 +46,4 @@ const BlogPattern8 = ({pattern, must = false}) => {
   );
 }
 
-export default BlogPattern8;
+export default BlogPattern8
