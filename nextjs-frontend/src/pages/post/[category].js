@@ -2,11 +2,10 @@ import { useRouter } from "next/router";
 import PageLayout from '@/components/Layouts/PageLayout'
 import Container from '@/components/Layouts/container'
 import { ArticleColumn, BlogPattern8, BlogSideBar, CatNavi, PageTitle } from "@/components";
-import { apiHost } from '@/lib/constants'
 import styles from '@/styles/components/pageSingle.module.scss'
 
 export const getServerSideProps = async ({params}) => {
-  const res = await fetch(`${apiHost}/api/liondor/post/${params.category}`)
+  const res = await fetch(`${process.env.API_DOMAIN}/api/liondor/post/${params.category}`)
   const data = await res.json()
 
   return {
