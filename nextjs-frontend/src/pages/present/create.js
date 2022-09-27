@@ -32,7 +32,7 @@ const CreatePresent = () => {
   const onSubmitHandler = useCallback((e) => {
     e.preventDefault()
     onPostForm({
-      file: imageRef.current.files[0],
+      thumbs: imageRef.current.files[0],
       title: txtRefs.current[0].current.value,
       offer: txtRefs.current[1].current.value,
       limit: txtRefs.current[2].current.value,
