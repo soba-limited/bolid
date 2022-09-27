@@ -6,7 +6,11 @@ import { createRef, useCallback, useRef } from 'react';
 const CreatePresent = () => {
   const imageRef = useRef(null)
   const txtRefs = useRef([])
-  const txtInput = ['title', 'name', 'limit']
+  const txtInput = [
+    {name: 'title', type: 'text'},
+    {name: 'offer', type: 'text'},
+    {name: 'limit', type: 'date'},
+  ]
   txtInput.forEach((_, i) => {
     txtRefs.current[i] = createRef()
   })
@@ -18,20 +22,14 @@ const CreatePresent = () => {
         params.append(key, this[key])
       }, data)
 
-      const resImage = await axios.post(`${apiHost}/api/liondor/present/store`, params, {
+      const res = await axios.post(`http://localhost:8000/api/liondor/present/store`, params, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       })
 
-      const resText = await axios.post(`${apiHost}/api/liondor/present/store`, {
-        title: txtRefs.current[0].current.value,
-        name: txtRefs.current[1].current.value,
-        limit: txtRefs.current[2].current.value
-      })
+      console.log(res)
 
-      console.log(resImage)
-      console.log(resText)
     } catch(err) {
       console.log(err)
     }
@@ -41,16 +39,19 @@ const CreatePresent = () => {
     e.preventDefault()
     onPostForm({
       file: imageRef.current.files[0],
+      title: txtRefs.current[0].current.value,
+      offer: txtRefs.current[1].current.value,
+      limit: txtRefs.current[2].current.value,
     })
   }, [onPostForm])
 
   return (
     <section className={styles.createSection}>
-      <form onSubmit={onSubmitHandler}>
+      <form method="POST" onSubmit={onSubmitHandler}>
         <input type="file" accept="image/*" ref={imageRef} />
-        <input type="text" ref={txtRefs.current[0]} />
-        <input type="text" ref={txtRefs.current[1]} />
-        <input type="text" ref={txtRefs.current[2]} />
+        {txtInput.map((input, index) => (
+          <input type={input.type} name={input.name} ref={txtRefs.current[index]} key={index} />
+        ))}
         <button>新規作成</button>
       </form>
     </section>
