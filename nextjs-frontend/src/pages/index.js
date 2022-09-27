@@ -2,10 +2,9 @@ import styles from '@/styles/components/home.module.scss'
 import { BlogPattern1, BlogPattern2, BlogPattern3, BlogPattern4, BlogPattern5, BlogPattern6, BlogPattern7, BlogPattern8, BlogPattern9, Button2, FirstClass, Meta } from '@/components'
 import PageLayout from '@/components/Layouts/PageLayout'
 import Container from '@/components/Layouts/container'
-import { apiHost } from '@/lib/constants'
 
 export const getServerSideProps = async () => {
-    const res = await fetch(`${apiHost}/api/liondor/`)
+    const res = await fetch(`${process.env.API_DOMAIN}/api/liondor/`)
     const data = await res.json()
 
     return {
