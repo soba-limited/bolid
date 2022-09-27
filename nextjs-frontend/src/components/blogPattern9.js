@@ -25,9 +25,9 @@ const BlogPattern9 = ({pattern}) => {
             </div>
             <BlogTxt
               smallMb
-              ttl={item.title}
-              name={item.offer}
-              time={item.created_at}
+              ttl={item?.title}
+              name={item?.offer}
+              time={item?.created_at}
             />
           </a>
         </Link>

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import PageLayout from '@/components/Layouts/PageLayout'
 import Container from '@/components/Layouts/container'
-import { ArticleColumn, CatNavi, PageTitle } from "@/components";
+import { ArticleColumn, BlogPattern8, BlogSideBar, CatNavi, PageTitle } from "@/components";
 import { apiHost } from '@/lib/constants'
 import styles from '@/styles/components/pageSingle.module.scss'
 
@@ -17,6 +17,8 @@ export const getServerSideProps = async ({params}) => {
 }
 
 const Post = ({posts}) => {
+  const pickupData = posts.pickups
+
   const router = useRouter();
   const { category, cat } = router.query
   const upperCat = category.toUpperCase()
@@ -29,9 +31,32 @@ const Post = ({posts}) => {
         <section className={styles.section}>
           <div className={styles.flex}>
             <ArticleColumn posts={posts} />
+            <BlogSideBar pickup={pickupData} />
           </div>
         </section>
       </Container>
+      <section className={styles.section2}>
+        <div className={styles.wrapper}>
+          <Container>
+              <BlogPattern8 pattern={pickupData} must />
+          </Container>
+        </div>
+      </section>
+      <Container>
+        <section className={styles.section3}>
+          <div className={styles.flex}>
+            <ArticleColumn posts={posts} type2 />
+            <BlogSideBar pickup={pickupData} />
+          </div>
+        </section>
+      </Container>
+      <section className={styles.section2}>
+        <div className={styles.wrapper}>
+          <Container>
+              <BlogPattern8 pattern={pickupData} must />
+          </Container>
+        </div>
+      </section>
     </section>
   );
 }

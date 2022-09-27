@@ -34,11 +34,11 @@ const BlogPattern5 = ({pattern}) => {
             </div>
             <BlogTxt
               smallMb
-              cat={item.l_category.parent_slug?.toUpperCase()}
-              cat2={item.l_category.name}
-              ttl={item.title}
-              name={item.user.name}
-              time={item.created_at}
+              cat={item?.l_category?.parent_slug?.toUpperCase()}
+              cat2={item?.l_category?.name}
+              ttl={item?.title}
+              name={item?.user?.name}
+              time={item?.created_at}
             />
           </a>
         </Link>

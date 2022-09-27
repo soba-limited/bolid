@@ -4,14 +4,16 @@ import Image from 'next/image';
 import dummy22 from '@/images/cms/dummy22.png'
 import { BlogTxt } from '@/components'
 
-const BlogPattern8 = ({pattern}) => {
+const BlogPattern8 = ({pattern, must = false}) => {
   const data = pattern?.filter((e, index) => {
     return index < 3
   })
 
   return (
     <article className={styles.article}>
-      <h2 className={`${styles.ttl} ivy ttl1`}>PICKUP INFOMATION</h2>
+      <h2 className={`${styles.ttl} ivy ttl1`}>
+        {must ? 'MUST READ' : 'PICKUP INFORMATION'}
+      </h2>
       <div className={styles.flex}>
         {data?.map((item) => (
           <Link href={`/post/show/${item.id}`} key={item.id}>
@@ -29,11 +31,11 @@ const BlogPattern8 = ({pattern}) => {
                 <BlogTxt
                   smallMb
                   fs14
-                  cat={item.l_post.l_category.parent_slug?.toUpperCase()}
-                  cat2={item.l_post.l_category.name}
-                  ttl={item.l_post.title}
-                  name={item.l_post.user.name}
-                  time={item?.l_post.created_at}
+                  cat={item?.l_post?.l_category?.parent_slug?.toUpperCase()}
+                  cat2={item?.l_post?.l_category?.name}
+                  ttl={item?.l_post?.title}
+                  name={item?.l_post?.user?.name}
+                  time={item?.l_post?.created_at}
                 />
               </div>
             </a>

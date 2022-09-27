@@ -30,20 +30,20 @@ const BlogColumn3 = ({patternData, part2 = false, route2 = false}) => {
               ?
               <BlogTxt
                 smallMb
-                cat={item.l_post.l_category.parent_slug?.toUpperCase()}
-                cat2={item.l_post.l_category.name}
-                ttl={item.l_post.title}
-                name={item.l_post.user.name}
-                time={item.l_post.created_at}
+                cat={item?.l_post?.l_category?.parent_slug?.toUpperCase()}
+                cat2={item?.l_post?.l_category?.name}
+                ttl={item?.l_post?.title}
+                name={item?.l_post?.user?.name}
+                time={item?.l_post?.created_at}
               />
               :
               <BlogTxt
                 smallMb
-                cat={item.l_category.parent_slug?.toUpperCase()}
-                cat2={item.l_category.name}
-                ttl={item.title}
-                name={item.user.name}
-                time={item.created_at}
+                cat={item?.l_category?.parent_slug?.toUpperCase()}
+                cat2={item?.l_category?.name}
+                ttl={item?.title}
+                name={item?.user?.name}
+                time={item?.created_at}
               />
             }
           </a>
