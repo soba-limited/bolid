@@ -26,6 +26,7 @@ const CreatePresent = () => {
         'Content-Type': 'multipart/form-data',
       },
     })
+    .then(res => console.log(res))
   }, [])
 
   const onSubmitHandler = useCallback((e) => {
