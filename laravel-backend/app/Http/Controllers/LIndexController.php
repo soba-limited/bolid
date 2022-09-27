@@ -8,6 +8,7 @@ use App\Models\LPost;
 use App\Models\LPresent;
 use App\Models\LSidebar;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class LIndexController extends Controller
 {
