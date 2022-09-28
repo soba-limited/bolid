@@ -9,6 +9,9 @@ use App\Models\LPresent;
 use App\Models\LSidebar;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Mail\ContactMail;
+use Mail;
 
 class LIndexController extends Controller
 {
@@ -24,12 +27,12 @@ class LIndexController extends Controller
         $topleader = \Commons::LPost_Category('topleader');
         $fortune = \Commons::LPost_Category('fortune');
         $video = \Commons::LPost_Category('video');
-        $present = LPresent::limit(5)->get();
+        $present = LPresent::limit(5)->orderBy('id', 'desc')->get();
         $special = LPickup::with(['LPost'=>function ($query) {
             $query->with(['user'=>function ($query) {
                 $query->with('LProfile');
             }])->with('LCategory');
-        }])->limit(12)->get();
+        }])->limit(12)->orderBy('id', 'desc')->get();
 
         //それぞれを配列に入れる
         $allarray = [
@@ -47,5 +50,12 @@ class LIndexController extends Controller
 
         $allarray = \Commons::LCommons($allarray);
         return $this->jsonResponse($allarray);
+    }
+
+    public function sendMail(Request $request)
+    {
+        $data = $request;
+        Mail::to('yamauchi@ai-communication.jp')->send(new ContactMail($data));
+        return 'メールが送信されました';
     }
 }

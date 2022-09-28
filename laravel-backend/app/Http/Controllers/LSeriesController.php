@@ -40,6 +40,10 @@ class LSeriesController extends Controller
     public function store(StoreLSeriesRequest $request)
     {
         //
+        $l_series = LSeries::create([
+            'name' => $request->name,
+        ]);
+        return $this->jsonResponse($l_series);
     }
 
     /**
@@ -79,9 +83,13 @@ class LSeriesController extends Controller
      * @param  \App\Models\LSeries  $lSeries
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLSeriesRequest $request, LSeries $lSeries)
+    public function update(UpdateLSeriesRequest $request, LSeries $lSeries, $id)
     {
         //
+        $l_series = LSeries::find($id)->update([
+            'name' => $request->name,
+        ]);
+        return $this->jsonResponse($l_series);
     }
 
     /**
@@ -90,8 +98,10 @@ class LSeriesController extends Controller
      * @param  \App\Models\LSeries  $lSeries
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LSeries $lSeries)
+    public function destroy(LSeries $lSeries, $id)
     {
         //
+        $l_series = LSeries::find($id)->delete();
+        return "このシリーズを削除しました";
     }
 }

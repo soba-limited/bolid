@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LPostUser;
 use App\Http\Requests\StoreLPostUserRequest;
 use App\Http\Requests\UpdateLPostUserRequest;
+use Illuminate\Support\Facades\Auth;
 
 class LPostUserController extends Controller
 {
@@ -34,9 +35,14 @@ class LPostUserController extends Controller
      * @param  \App\Http\Requests\StoreLPostUserRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLPostUserRequest $request)
+    public function store(StoreLPostUserRequest $request, $id)
     {
         //
+        $bookmark = LPostUser::crete([
+            'user_id' => Auth::id(),
+            'l_post_id' => $id,
+        ]);
+        return 'この記事をブックマークしました';
     }
 
     /**
@@ -79,8 +85,10 @@ class LPostUserController extends Controller
      * @param  \App\Models\LPostUser  $LPostUser
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LPostUser $LPostUser)
+    public function destroy(LPostUser $LPostUser, $id)
     {
         //
+        $l_post_user = LPostUser::where('user_id', Auth::id())->where('l_post_id', $id)->first()->delete();
+        return 'この記事のブックマークを解除しました';
     }
 }

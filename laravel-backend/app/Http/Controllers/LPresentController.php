@@ -18,7 +18,7 @@ class LPresentController extends Controller
     public function index()
     {
         //
-        $presents = LPresent::get();
+        $presents = LPresent::orderBy('id', 'desc')->get();
 
         //それぞれを配列に入れる
         $allarray = [
@@ -47,18 +47,20 @@ class LPresentController extends Controller
     public function store(StoreLPresentRequest $request)
     {
         //
-        $l_post = LPresent::create([
+        $l_present = LPresent::create([
             'title' => $request->title,
             'offer' => $request->offer,
             'limit' => $request->limit
         ]);
-        $id = $l_post->id;
-        $file_name = $request->file('thumbs')->getClientOriginalName();
-        $request->file('thumbs')->storeAs('images/present/'.$id, $file_name, 'public');
-        $thumbs = 'images/present/'.$id."/".$file_name;
-        $l_post->thumbs = $thumbs;
-        $l_post->save();
-        return $this->jsonResponse($l_post);
+        $id = $l_present->id;
+        if ($request->hasFile('thumbs')) {
+            $file_name = $request->file('thumbs')->getClientOriginalName();
+            $request->file('thumbs')->storeAs('images/present/'.$id, $file_name, 'public');
+            $thumbs = 'images/present/'.$id."/".$file_name;
+            $l_present->thumbs = $thumbs;
+            $l_present->save();
+        }
+        return $this->jsonResponse($l_present);
     }
 
     /**
@@ -98,9 +100,21 @@ class LPresentController extends Controller
      * @param  \App\Models\LPresent  $lPresent
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLPresentRequest $request, LPresent $lPresent)
+    public function update(UpdateLPresentRequest $request, $id)
     {
         //
+        if ($request->hasFile('thumbs')) {
+            $file_name = $request->file('thumbs')->getClientOriginalName();
+            $request->file('thumbs')->storeAs('images/present/'.$id, $file_name, 'public');
+            $thumbs = 'images/present/'.$id."/".$file_name;
+        }
+        $l_present = LPost::find($id)->update([
+            'title' => $request->title,
+            'offer' => $request->offer,
+            'limit' => $request->limit,
+            'thumbs' => $request->hasFile('thumbs') ? $thumbs : $request->thumbs,
+        ]);
+        return $this->jsonResponse($l_present);
     }
 
     /**
@@ -109,12 +123,11 @@ class LPresentController extends Controller
      * @param  \App\Models\LPresent  $lPresent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LPresent $lPresent)
+    public function destroy($id)
     {
         //
-    }
-
-    public function app()
-    {
+        $title = LPresent::find($id)->title;
+        LPresent::find($id)->delete();
+        return $title."は削除されました";
     }
 }

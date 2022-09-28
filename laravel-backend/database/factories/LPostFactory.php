@@ -30,7 +30,7 @@ class LPostFactory extends Factory
             'sub_title' => $this->faker->realText(50),
             'discription' => $this->faker->realText(300),
             'content' => $this->faker->realText(1000),
-            'state' => 1
+            'state' => $this->faker->numberBetween($min=0, $max=1),
         ];
     }
 }
