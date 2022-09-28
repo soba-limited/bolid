@@ -16,6 +16,8 @@ class LPickupController extends Controller
     public function index()
     {
         //
+        $l_pick_up = LPickup::with('LPost')->orderBy('id', 'desc')->get();
+        return $this->jsonResponse($l_pick_up);
     }
 
     /**
@@ -34,9 +36,13 @@ class LPickupController extends Controller
      * @param  \App\Http\Requests\StoreLPickupRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreLPickupRequest $request)
+    public function store(StoreLPickupRequest $request, $id)
     {
         //
+        $l_pick = LPickup::create([
+            'l_post_id' => $id,
+        ]);
+        return 'この記事をピックアップに追加しました';
     }
 
     /**
@@ -79,8 +85,10 @@ class LPickupController extends Controller
      * @param  \App\Models\LPickup  $lPickup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LPickup $lPickup)
+    public function destroy($id)
     {
         //
+        LPickup::find($id)->delete();
+        return "この記事をピックアップから削除しました";
     }
 }

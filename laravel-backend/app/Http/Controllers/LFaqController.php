@@ -16,8 +16,8 @@ class LFaqController extends Controller
     public function index()
     {
         //
-        $company_faq = LFaq::where('type', 1)->get();
-        $user_faq = LFaq::where('type', 0)->get();
+        $company_faq = LFaq::where('type', 1)->orderBy('id', 'desc')->get();
+        $user_faq = LFaq::where('type', 0)->orderBy('id', 'desc')->get();
         $allarray = [
             'company_faq'=>$company_faq,
             'user_faq'=>$user_faq,
@@ -44,6 +44,12 @@ class LFaqController extends Controller
     public function store(StoreLFaqRequest $request)
     {
         //
+        $l_faq = Lfaq::create([
+            'question' => $request->question,
+            'answer' => $request->answer,
+            'type' => $request->type,
+        ]);
+        return $this->jsonResponse($l_faq);
     }
 
     /**
@@ -75,9 +81,15 @@ class LFaqController extends Controller
      * @param  \App\Models\LFaq  $lFaq
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLFaqRequest $request, LFaq $lFaq)
+    public function update(UpdateLFaqRequest $request, $id)
     {
         //
+        $l_faq = Lfaq::find($id)->update([
+            'question' => $request->question,
+            'answer' => $request->answer,
+            'type' => $request->type,
+        ]);
+        return $this->jsonResponse($l_faq);
     }
 
     /**
@@ -86,8 +98,10 @@ class LFaqController extends Controller
      * @param  \App\Models\LFaq  $lFaq
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LFaq $lFaq)
+    public function destroy($id)
     {
         //
+        LFaq::find($id)->delete();
+        return '削除しました';
     }
 }

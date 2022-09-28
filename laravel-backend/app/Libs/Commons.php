@@ -19,13 +19,13 @@ class Commons extends Facade
 {
     public static function LCommons($allarray)
     {
-        $side = LSidebar::all();
+        $side = LSidebar::where('state', 1)->orderBy('order', 'desc')->limit(5)->get();
         $allarray = array_merge($allarray, array('sidebars'=>$side));
         $pickup = LPickup::with(['LPost'=>function ($query) {
             $query->with(['user'=>function ($query) {
                 $query->with('LProfile');
             }]);
-        }])->inRandomOrder()->limit(5)->get();
+        }])->inRandomOrder()->limit(5)->orderBy('id', 'desc')->get();
         $allarray = array_merge($allarray, array('pickups'=>$pickup));
         return $allarray;
     }
@@ -36,7 +36,7 @@ class Commons extends Facade
         $categorysingle = LCategory::where('slug', $category)->first();
         $posts = LPost::with('LCategory')->with(['user'=>function ($query) {
             $query->with(['LProfile']);
-        }])->whereIn('l_category_id', $categoryIds)->limit(10)->get();
+        }])->whereIn('l_category_id', $categoryIds)->limit(10)->orderBy('id', 'desc')->get();
         $return =[
             'id' => $categorysingle->id,
             'name' => $categorysingle->name,

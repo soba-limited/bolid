@@ -16,6 +16,8 @@ class LSidebarController extends Controller
     public function index()
     {
         //
+        $l_sidebar = LSidebar::get();
+        return $this->jsonResponse($l_sidebar);
     }
 
     /**
@@ -37,6 +39,13 @@ class LSidebarController extends Controller
     public function store(StoreLSidebarRequest $request)
     {
         //
+        $l_sidebar = LSidebar::create([
+            'title' => $request->title,
+            'content' => $request->content,
+            'order' => isset($request->order) ? $request->order : 0,
+            'state' => isset($request->state) ? $request->state : 0,
+        ]);
+        return $this->jsonResponse($l_sidebar);
     }
 
     /**
@@ -56,9 +65,11 @@ class LSidebarController extends Controller
      * @param  \App\Models\LSidebar  $lSidebar
      * @return \Illuminate\Http\Response
      */
-    public function edit(LSidebar $lSidebar)
+    public function edit(LSidebar $lSidebar, $id)
     {
         //
+        $l_sidebar = LSidebar::find($id);
+        return $this->jsonResponse($l_sidebar);
     }
 
     /**
@@ -68,9 +79,16 @@ class LSidebarController extends Controller
      * @param  \App\Models\LSidebar  $lSidebar
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateLSidebarRequest $request, LSidebar $lSidebar)
+    public function update(UpdateLSidebarRequest $request, LSidebar $lSidebar, $id)
     {
         //
+        $l_sideebar = LSidebar::find($id)->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'order' => isset($request->order) ? $request->order : 0,
+            'state' => isset($request->state) ? $request->state : 0,
+        ]);
+        return $this->jsonResponse($l_sideebar);
     }
 
     /**
@@ -79,8 +97,10 @@ class LSidebarController extends Controller
      * @param  \App\Models\LSidebar  $lSidebar
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LSidebar $lSidebar)
+    public function destroy(LSidebar $lSidebar, $id)
     {
         //
+        LSidebar::find($id)->delete();
+        return 'このブロックは削除されました';
     }
 }
